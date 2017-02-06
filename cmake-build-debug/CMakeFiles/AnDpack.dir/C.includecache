@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ronnymajani/Workspace/AnD.pack.test/Data Structures/Linked Lists/SinglyLinkedList.c
+/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.c
 assert.h
 -
 stdlib.h
@@ -16,7 +16,7 @@ memory.h
 stdio.h
 -
 SinglyLinkedList.h
-/home/ronnymajani/Workspace/AnD.pack.test/Data Structures/Linked Lists/SinglyLinkedList.h
+/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.h
 
-/home/ronnymajani/Workspace/AnD.pack.test/Data Structures/Linked Lists/SinglyLinkedList.h
+/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.h
 
