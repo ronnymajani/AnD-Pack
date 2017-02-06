@@ -4,6 +4,7 @@ project(AnDpack)
 set(CMAKE_C_STANDARD 11)
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib)
+
 set(SOURCE_FILES main.c)
 set(LIBRARY_FILES "Data Structures/Linked Lists/SinglyLinkedList.c" "Data Structures/Linked Lists/SinglyLinkedList.h")
 
