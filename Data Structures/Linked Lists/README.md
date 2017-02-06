@@ -9,6 +9,18 @@ Singly Linked Lists:
 - Node: **ds_sll_node_t**
 - Error Codes: **ds_sll_error_t**
 
+**Overview:**
+
+The linked list is represented by a header, that keeps track of the **head** and the
+ **tail**. The linked list consists of **nodes**. Each node has a reference to the **next node**.
+ Each node also stores one **void pointer** that we call an **element**.
+ This pointer is generic and can be used anyway you see fit. The simplest example is it could
+ be a pointer to a primitive data type allocated in memory, and when you access this data you simply
+ typecast the pointer to the appropriate type and then dereference it as you would any normal pointer.
+ For the more advanced applications out there this pointer could reference more complicated objects
+ or be used for more complex representations. To accommodate for the wide possiblities
+ I aimed to abstract the library to manageable and easily customizable chunks.
+
 Available Functions:
 --------------------
 - **newSinglyLinkedList**: Create a new header
