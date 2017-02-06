@@ -21,6 +21,14 @@ Algorithms (code: al):
 
 Notes:
 ======
+Implementation:
+---------------
+- C Language following the C-11 Standard
+- CMake v3.6 for compiling and organizing the build process
+- For Parallel Algorithms:
+  - POSIX for multithreading implementations
+  - OpenCL v1.1+ for GPU and cross platform implementations
+
 Naming Conventions:
 -------------------
 All labels are suffixed according to their library's heirarchy:
