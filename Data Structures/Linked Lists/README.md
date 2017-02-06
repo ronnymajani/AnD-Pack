@@ -5,9 +5,9 @@ Singly Linked Lists:
 **Label Suffix:** ds_sll_
 
 **Data Types:**
-- Linked List Header: ds_sll_t
-- Node: ds_sll_node_t
-- Error Codes: ds_sll_error_t
+- Linked List Header: **ds_sll_t**
+- Node: **ds_sll_node_t**
+- Error Codes: **ds_sll_error_t**
 
 Available Functions:
 --------------------
