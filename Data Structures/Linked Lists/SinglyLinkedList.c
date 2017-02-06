@@ -104,7 +104,7 @@ ds_sll_node_t* ds_sll_createNode(void* element)
  */
 ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index)
 {
-            ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
 
     ds_sll_node_t* curr = linkedList->head;
 
@@ -138,7 +138,7 @@ ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index)
  */
 void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
 {
-            ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
     ds_sll_node_t* res = ds_sll_getNodeAtIndex(linkedList, index);
     if(res == NULL) {
         return NULL;
@@ -158,7 +158,7 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
  */
 ds_sll_error_t ds_sll_destroy(ds_sll_t* linkedList)
 {
-            ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
     while((linkedList->head != NULL) && (linkedList->head != linkedList->tail))
     {
@@ -192,7 +192,7 @@ ds_sll_error_t ds_sll_destroy(ds_sll_t* linkedList)
  */
 void ds_sll_appendNode(ds_sll_t* linkedList, ds_sll_node_t* node)
 {
-            ASSERT(linkedList != NULL);
+    ASSERT(linkedList != NULL);
     if(linkedList->head == NULL) { // first element in the list
         linkedList->head = node;
         linkedList->tail = node;
@@ -215,7 +215,7 @@ void ds_sll_appendNode(ds_sll_t* linkedList, ds_sll_node_t* node)
  */
 ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element)
 {
-            ASSERT(linkedList != NULL);
+    ASSERT(linkedList != NULL);
     ds_sll_node_t* new_node = ds_sll_createNode(element);
 
     if(new_node == NULL) {
@@ -236,7 +236,7 @@ ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element)
  */
 ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, size_t element_size)
 {
-            ASSERT(linkedList != NULL);
+    ASSERT(linkedList != NULL);
     void* copy = malloc(element_size);
 
     if(copy == NULL) {
@@ -261,7 +261,7 @@ ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, siz
  */
 ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* node, int index)
 {
-            ASSERT((linkedList != NULL) && (index >= 0));
+    ASSERT((linkedList != NULL) && (index >= 0));
     //#TODO
     return DS_SLL_NO_ERROR;
 }
@@ -281,7 +281,7 @@ ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* nod
  */
 int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, int))
 {
-            ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
     int index;
     ds_sll_node_t* curr = linkedList->head;
@@ -310,7 +310,7 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, in
  */
 int ds_sll_calculateLength(ds_sll_t* linkedList)
 {
-            ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
     int index;
     ds_sll_node_t* curr = linkedList->head;

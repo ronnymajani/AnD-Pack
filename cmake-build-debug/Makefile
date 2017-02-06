@@ -48,10 +48,10 @@ RM = /home/ronnymajani/Apps/clion-2016.3.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/ronnymajani/Workspace/AnD Pack"
+CMAKE_SOURCE_DIR = /home/ronnymajani/Workspace/AnD.pack.test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug"
+CMAKE_BINARY_DIR = /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named AnD_pack
+# Target rules for targets named AnDpack_test
 
 # Build rule for target.
-AnD_pack: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 AnD_pack
-.PHONY : AnD_pack
+AnDpack_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 AnDpack_test
+.PHONY : AnDpack_test
 
 # fast build rule for target.
-AnD_pack/fast:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/build
-.PHONY : AnD_pack/fast
+AnDpack_test/fast:
+	$(MAKE) -f CMakeFiles/AnDpack_test.dir/build.make CMakeFiles/AnDpack_test.dir/build
+.PHONY : AnDpack_test/fast
+
+#=============================================================================
+# Target rules for targets named AnDpack
+
+# Build rule for target.
+AnDpack: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 AnDpack
+.PHONY : AnDpack
+
+# fast build rule for target.
+AnDpack/fast:
+	$(MAKE) -f CMakeFiles/AnDpack.dir/build.make CMakeFiles/AnDpack.dir/build
+.PHONY : AnDpack/fast
 
 Data_Structures/Linked_Lists/SinglyLinkedList.o: Data_Structures/Linked_Lists/SinglyLinkedList.c.o
 
@@ -129,7 +142,7 @@ Data_Structures/Linked_Lists/SinglyLinkedList.o: Data_Structures/Linked_Lists/Si
 
 # target to build an object file
 Data_Structures/Linked_Lists/SinglyLinkedList.c.o:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o
+	$(MAKE) -f CMakeFiles/AnDpack.dir/build.make CMakeFiles/AnDpack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o
 .PHONY : Data_Structures/Linked_Lists/SinglyLinkedList.c.o
 
 Data_Structures/Linked_Lists/SinglyLinkedList.i: Data_Structures/Linked_Lists/SinglyLinkedList.c.i
@@ -138,7 +151,7 @@ Data_Structures/Linked_Lists/SinglyLinkedList.i: Data_Structures/Linked_Lists/Si
 
 # target to preprocess a source file
 Data_Structures/Linked_Lists/SinglyLinkedList.c.i:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.i
+	$(MAKE) -f CMakeFiles/AnDpack.dir/build.make CMakeFiles/AnDpack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.i
 .PHONY : Data_Structures/Linked_Lists/SinglyLinkedList.c.i
 
 Data_Structures/Linked_Lists/SinglyLinkedList.s: Data_Structures/Linked_Lists/SinglyLinkedList.c.s
@@ -147,35 +160,35 @@ Data_Structures/Linked_Lists/SinglyLinkedList.s: Data_Structures/Linked_Lists/Si
 
 # target to generate assembly for a file
 Data_Structures/Linked_Lists/SinglyLinkedList.c.s:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.s
+	$(MAKE) -f CMakeFiles/AnDpack.dir/build.make CMakeFiles/AnDpack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.s
 .PHONY : Data_Structures/Linked_Lists/SinglyLinkedList.c.s
 
-library.o: library.c.o
+main.o: main.c.o
 
-.PHONY : library.o
+.PHONY : main.o
 
 # target to build an object file
-library.c.o:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/library.c.o
-.PHONY : library.c.o
+main.c.o:
+	$(MAKE) -f CMakeFiles/AnDpack_test.dir/build.make CMakeFiles/AnDpack_test.dir/main.c.o
+.PHONY : main.c.o
 
-library.i: library.c.i
+main.i: main.c.i
 
-.PHONY : library.i
+.PHONY : main.i
 
 # target to preprocess a source file
-library.c.i:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/library.c.i
-.PHONY : library.c.i
+main.c.i:
+	$(MAKE) -f CMakeFiles/AnDpack_test.dir/build.make CMakeFiles/AnDpack_test.dir/main.c.i
+.PHONY : main.c.i
 
-library.s: library.c.s
+main.s: main.c.s
 
-.PHONY : library.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-library.c.s:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/library.c.s
-.PHONY : library.c.s
+main.c.s:
+	$(MAKE) -f CMakeFiles/AnDpack_test.dir/build.make CMakeFiles/AnDpack_test.dir/main.c.s
+.PHONY : main.c.s
 
 # Help Target
 help:
@@ -185,13 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... AnD_pack"
+	@echo "... AnDpack_test"
+	@echo "... AnDpack"
 	@echo "... Data_Structures/Linked_Lists/SinglyLinkedList.o"
 	@echo "... Data_Structures/Linked_Lists/SinglyLinkedList.i"
 	@echo "... Data_Structures/Linked_Lists/SinglyLinkedList.s"
-	@echo "... library.o"
-	@echo "... library.i"
-	@echo "... library.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

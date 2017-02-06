@@ -54,45 +54,82 @@ RM = /home/ronnymajani/Apps/clion-2016.3.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/ronnymajani/Workspace/AnD Pack"
+CMAKE_SOURCE_DIR = /home/ronnymajani/Workspace/AnD.pack.test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug"
+CMAKE_BINARY_DIR = /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/AnD_pack.dir
+# Target rules for target CMakeFiles/AnDpack_test.dir
 
 # All Build rule for target.
-CMakeFiles/AnD_pack.dir/all:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/depend
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" --progress-num=1,2,3 "Built target AnD_pack"
-.PHONY : CMakeFiles/AnD_pack.dir/all
+CMakeFiles/AnDpack_test.dir/all: CMakeFiles/AnDpack.dir/all
+	$(MAKE) -f CMakeFiles/AnDpack_test.dir/build.make CMakeFiles/AnDpack_test.dir/depend
+	$(MAKE) -f CMakeFiles/AnDpack_test.dir/build.make CMakeFiles/AnDpack_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target AnDpack_test"
+.PHONY : CMakeFiles/AnDpack_test.dir/all
 
 # Include target in all.
-all: CMakeFiles/AnD_pack.dir/all
+all: CMakeFiles/AnDpack_test.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/AnD_pack.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/AnD_pack.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" 0
-.PHONY : CMakeFiles/AnD_pack.dir/rule
+CMakeFiles/AnDpack_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/AnDpack_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/AnDpack_test.dir/rule
 
 # Convenience name for target.
-AnD_pack: CMakeFiles/AnD_pack.dir/rule
+AnDpack_test: CMakeFiles/AnDpack_test.dir/rule
 
-.PHONY : AnD_pack
-
-# clean rule for target.
-CMakeFiles/AnD_pack.dir/clean:
-	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/clean
-.PHONY : CMakeFiles/AnD_pack.dir/clean
+.PHONY : AnDpack_test
 
 # clean rule for target.
-clean: CMakeFiles/AnD_pack.dir/clean
+CMakeFiles/AnDpack_test.dir/clean:
+	$(MAKE) -f CMakeFiles/AnDpack_test.dir/build.make CMakeFiles/AnDpack_test.dir/clean
+.PHONY : CMakeFiles/AnDpack_test.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/AnDpack_test.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/AnDpack.dir
+
+# All Build rule for target.
+CMakeFiles/AnDpack.dir/all:
+	$(MAKE) -f CMakeFiles/AnDpack.dir/build.make CMakeFiles/AnDpack.dir/depend
+	$(MAKE) -f CMakeFiles/AnDpack.dir/build.make CMakeFiles/AnDpack.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target AnDpack"
+.PHONY : CMakeFiles/AnDpack.dir/all
+
+# Include target in all.
+all: CMakeFiles/AnDpack.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/AnDpack.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/AnDpack.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/AnDpack.dir/rule
+
+# Convenience name for target.
+AnDpack: CMakeFiles/AnDpack.dir/rule
+
+.PHONY : AnDpack
+
+# clean rule for target.
+CMakeFiles/AnDpack.dir/clean:
+	$(MAKE) -f CMakeFiles/AnDpack.dir/build.make CMakeFiles/AnDpack.dir/clean
+.PHONY : CMakeFiles/AnDpack.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/AnDpack.dir/clean
 
 .PHONY : clean
 

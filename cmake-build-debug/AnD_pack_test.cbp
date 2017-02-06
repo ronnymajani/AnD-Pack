@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="AnDpack"/>
+		<Option title="AnD_pack_test"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
@@ -84,7 +84,7 @@
 				</MakeCommands>
 			</Target>
 			<Target title="AnDpack">
-				<Option output="/home/ronnymajani/Workspace/AnD.pack.test/lib/libAnDpack.a" prefix_auto="0" extension_auto="0"/>
+				<Option output="/home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/libAnDpack.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
@@ -107,7 +107,7 @@
 				</MakeCommands>
 			</Target>
 			<Target title="AnDpack/fast">
-				<Option output="/home/ronnymajani/Workspace/AnD.pack.test/lib/libAnDpack.a" prefix_auto="0" extension_auto="0"/>
+				<Option output="/home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/libAnDpack.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>

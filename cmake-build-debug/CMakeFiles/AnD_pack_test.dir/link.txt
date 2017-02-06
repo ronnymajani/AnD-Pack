@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/AnD_pack_test.dir/main.c.o CMakeFiles/AnD_pack_test.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o  -o AnD_pack_test 

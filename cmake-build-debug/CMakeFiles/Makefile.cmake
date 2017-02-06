@@ -44,5 +44,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/AnD_pack.dir/DependInfo.cmake"
+  "CMakeFiles/AnDpack_test.dir/DependInfo.cmake"
+  "CMakeFiles/AnDpack.dir/DependInfo.cmake"
   )

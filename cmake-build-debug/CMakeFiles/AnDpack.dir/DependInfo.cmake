@@ -4,8 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.c" "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o"
-  "/home/ronnymajani/Workspace/AnD Pack/library.c" "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles/AnD_pack.dir/library.c.o"
+  "/home/ronnymajani/Workspace/AnD.pack.test/Data Structures/Linked Lists/SinglyLinkedList.c" "/home/ronnymajani/Workspace/AnD.pack.test/cmake-build-debug/CMakeFiles/AnDpack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
