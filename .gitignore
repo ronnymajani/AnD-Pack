@@ -32,4 +32,5 @@
 *.dSYM/
 
 # Project Files
-.idea/
+.*
+!/.gitignore
