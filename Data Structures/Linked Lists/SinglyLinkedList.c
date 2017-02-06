@@ -36,10 +36,9 @@
  * + New: create a new Singly Linked List
  * + Destroy: delete all elements from the Singly Linked List and free all
  * resources
- * - Add: Create a new node with the given element and insert it into the linked list
  * + Append Element: Create a new node with the given element and append it to the linked list
  * + Create Node: Create a new node with the given element
- * - Insert Node: Insert a given node at the specified index
+ * + Insert Node: Insert a given node at the specified index
  * + Append Node: Append a given node to the end of the linked list
  * - Delete Node: Delete the node at the given index
  * + Get Node: Get the node at the given index
@@ -84,14 +83,51 @@ ds_sll_t* ds_sll_new()
  */
 ds_sll_node_t* ds_sll_createNode(void* element)
 {
-    ds_sll_node_t* newnode = (ds_sll_node_t*) malloc(sizeof(ds_sll_node_t));
+    ds_sll_node_t* new_node = (ds_sll_node_t*) malloc(sizeof(ds_sll_node_t));
 
-    if(newnode == NULL) {
+    if(new_node == NULL) {
         return NULL;
     }
 
-    newnode->element = element;
-    return newnode;
+    ds_sll_storeElementInNode(new_node, element);
+    return new_node;
+}
+
+
+/**
+ * @brief Extract the element contained in the given node
+ * @param node The node that contains the element you wish to extract
+ * @return The element contained within the given node (void *)
+ */
+ void* ds_sll_extractElementFromNode(ds_sll_node_t* node)
+{
+    return node->element;
+}
+
+
+/**
+ * @brief Encapsulate an element within a given node
+ * @param node The node to store the element in
+ * @param element The element to store in the node
+ * The reason that I have abstracted this function is to allow the programmer to change the way data is being
+ * stored and extracted within nodes. Note that at the moment of this writing, the nodes store void pointers. Though
+ * you may use those pointers as a gate to more complex operations as you see fit.
+ */
+ void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element)
+{
+    node->element = element;
+}
+
+/**
+ * @brief Delete the element contained within a node and free allocated resources
+ * @param node The node containing the element to be deleted/freed
+ */
+ void ds_sll_deleteElementInNode(ds_sll_node_t* node)
+{
+    if(node->element != NULL) {
+        free(node->element);
+        node->element = NULL;
+    }
 }
 
 
@@ -143,7 +179,7 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
     if(res == NULL) {
         return NULL;
     } else {
-        return res->element;
+        return ds_sll_extractElementFromNode(res);
     }
 }
 
@@ -162,16 +198,12 @@ ds_sll_error_t ds_sll_destroy(ds_sll_t* linkedList)
 
     while((linkedList->head != NULL) && (linkedList->head != linkedList->tail))
     {
-        if(linkedList->head->element != NULL) {
-            free(linkedList->head->element);
-        }
+        ds_sll_deleteElementInNode(linkedList->head);
         linkedList->head = linkedList->head->next;
     }
 
     // free the list's tail
-    if(linkedList->tail->element != NULL) {
-        free(linkedList->tail->element);
-    }
+    ds_sll_deleteElementInNode(linkedList->tail);
 
     // check if an error occurred and act accordingly
     if(linkedList-> head == linkedList->tail) {
@@ -234,7 +266,7 @@ ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element)
  * @param element The element to copy and append the new copy to the end of the given list
  * @return 1 if an error occurred; 0 otherwise
  */
-ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, size_t element_size)
+ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, const size_t element_size)
 {
     ASSERT(linkedList != NULL);
     void* copy = malloc(element_size);
@@ -262,10 +294,82 @@ ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, siz
 ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* node, int index)
 {
     ASSERT((linkedList != NULL) && (index >= 0));
-    //#TODO
+
+    if(index == 0) {
+        if (linkedList->head == NULL) {
+            linkedList->head = node;
+            linkedList->tail = node;
+        } else if (linkedList->head == linkedList->tail) {
+            linkedList->tail = node;
+            linkedList->head->next = node;
+        } else {
+            node->next = linkedList->head;
+            linkedList->head = node;
+        }
+    }
+    else {
+        ds_sll_node_t *prev = linkedList->head;
+
+        // iterate to the node right before the node at the given index
+        for (; (prev != NULL) && (index != 1); index--, prev = prev->next);
+
+        if((index != 1) || (prev == NULL)) {
+            return DS_SLL_BROKEN_LIST_ERROR;
+        } else {
+            if (prev->next == NULL) { // if a NULL node was reached
+                return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
+            } else { // the correct node was reached
+                node->next = prev->next;
+                prev->next = node;
+            }
+        }
+    }
     return DS_SLL_NO_ERROR;
 }
 
+
+/**
+ * @brief Create a new node with the given element and inserts the new node at the chosen index
+ * @param linkedList The singly linked list to insert the node into
+ * @param element The element pointer you wish to store in the node
+ * @param index The index where the node should be inserted
+ * @return An error code indicating the completion status of the function
+ * @see ds_sll_error_t
+ */
+ds_sll_error_t ds_sll_insertElementAtIndex(ds_sll_t* linkedList, void* element, int index)
+{
+    ASSERT((linkedList != NULL) && (index >= 0));
+    ds_sll_node_t* new_node = ds_sll_createNode(element);
+
+    if(new_node == NULL) {
+        return DS_SLL_NODE_CREATION_ERROR;
+    }
+
+    return ds_sll_insertNodeAtIndex(linkedList, new_node, index);
+}
+
+
+/**
+ * @brief Create a new node with a copy of the given element and inserts the new node at the chosen index
+ * @param linkedList The singly linked list to insert the node into
+ * @param element The element that you wish to store a copy of in the new node
+ * @param index The index where the node should be inserted
+ * @return An error code indicating the completion status of the function
+ * @see ds_sll_error_t
+ */
+ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* element, const size_t element_size, int index)
+{
+    ASSERT((linkedList != NULL) && (index >= 0));
+    void* copy = malloc(element_size);
+
+    if(copy == NULL) {
+        return DS_SLL_ELEMENT_CREATION_ERROR;
+    }
+
+    memcpy(copy, element, element_size);
+
+    return ds_sll_insertElementAtIndex(linkedList, copy, index);
+}
 
 
 /**
@@ -288,14 +392,14 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, in
 
     // Traverse the linked list `index` times or until end of list or NULL is reached
     for(index = 0; curr != linkedList->tail; index++){
-        if((curr == NULL) || (func(curr->element, index) == 1)) { // an error occurred!
+        if((curr == NULL) || (func(ds_sll_extractElementFromNode(curr), index) == 1)) { // an error occurred!
             return index;
         }
         // iterate to next node
         curr = curr->next;
     }
 
-    if((curr != linkedList->tail) || (func(curr->element, index) == 1)) {
+    if((curr != linkedList->tail) || (func(ds_sll_extractElementFromNode(curr), index) == 1)) {
         return index;
     }
 

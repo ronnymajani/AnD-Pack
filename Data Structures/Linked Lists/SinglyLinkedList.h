@@ -51,23 +51,35 @@ typedef enum ds_sll_error_t {
     DS_SLL_NODE_CREATION_ERROR, /**< Error creating a new node */
     DS_SLL_ELEMENT_CREATION_ERROR, /**< Error allocating memory for an element */
     DS_SLL_LIST_CREATION_ERROR, /**< Error creating a new singly linked list */
+    DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR, /**< The index is out of bounds */
     DS_SLL_BROKEN_LIST_ERROR /**< Error traversing a singly linked list till the end (the list is broken) */
 } ds_sll_error_t;
 /* ------------------------------------------------------------------ */
 
 
 /* Functions */
+// Create/Delete
 ds_sll_t* ds_sll_new();
 ds_sll_node_t* ds_sll_createNode(void* element);
-ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index);
-void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index);
 ds_sll_error_t ds_sll_destroy(ds_sll_t* linkedList);
-void ds_sll_appendNode(ds_sll_t* linkedList, ds_sll_node_t* node);
-ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element);
-ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, size_t element_size);
-ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* node, int index);
+// Operations on Node
+void* ds_sll_extractElementFromNode(ds_sll_node_t* node);
+void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element);
+void ds_sll_deleteElementInNode(ds_sll_node_t* node);
+// Operations on List
 int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, int));
 int ds_sll_calculateLength(ds_sll_t* linkedList);
+// Retrieval
+ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index);
+void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index);
+// Append
+void ds_sll_appendNode(ds_sll_t* linkedList, ds_sll_node_t* node);
+ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element);
+ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, const size_t element_size);
+// Insert
+ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* node, int index);
+ds_sll_error_t ds_sll_insertElementAtIndex(ds_sll_t* linkedList, void* element, int index);
+ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* element, const size_t element_size, int index);
 /* ------------------------------------------------------------------ */
 
 

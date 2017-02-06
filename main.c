@@ -20,18 +20,23 @@ int main() {
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
     x = 63;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
+
+
+
     x = 77;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
     x = 91;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
+    x = 444;
+    ds_sll_insertElementCopyAtIndex(mylist, &x, sizeof(int), 4);
     x = 234155;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
 
     ds_sll_executeFunctionOnElements(mylist, printElement);
 
-    void* res = ds_sll_getElementAtIndex(mylist, 6);
+    void* res = ds_sll_getElementAtIndex(mylist, 2);
     if(res != NULL) {
-        printf("Node 4 is: %d\n", *((int *) res));
+        printf("Node 2 is: %d\n", *((int *) res));
     } else {
         printf("Index out of bounds!\n");
     }
