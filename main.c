@@ -12,7 +12,7 @@ void debug() {
 }
 
 int main() {
-    ds_sll_t* mylist = ds_sll_new();
+    ds_sll_t* mylist = ds_sll_newSinglyLinkedList();
     int x = 75;
 
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
@@ -43,7 +43,7 @@ int main() {
 
     printf("List has %d nodes\n", ds_sll_calculateLength(mylist));
 
-    ds_sll_destroy(mylist);
+    ds_sll_destroySinglyLinkedList(mylist);
 
     printf("Hello, World!\n");
     return 0;

@@ -61,7 +61,7 @@
  * @brief Create a new singly linked list
  * @return Returns a new Singly Linked List struct
  */
-ds_sll_t* ds_sll_new()
+ds_sll_t* ds_sll_newSinglyLinkedList()
 {
     ds_sll_t* new_list = (ds_sll_t*) malloc(sizeof(ds_sll_t));
 
@@ -119,16 +119,33 @@ ds_sll_node_t* ds_sll_createNode(void* element)
 }
 
 /**
- * @brief Delete the element contained within a node and free allocated resources
- * @param node The node containing the element to be deleted/freed
+ * @brief Delete an element contained within a node and free any allocated resources
+ * @param element The element
  */
- void ds_sll_deleteElementInNode(ds_sll_node_t* node)
+ void ds_sll_deleteElement(void* element)
 {
-    if(node->element != NULL) {
-        free(node->element);
-        node->element = NULL;
+    if(element != NULL) {
+        free(element);
     }
 }
+
+/**
+ * @brief Copy a given element to be stored in a node
+ * @param element The element to copy
+ * @return The new copy of the given element
+ */
+ void* ds_sll_copyElement(void* element, const size_t element_size)
+{
+    void* copy = malloc(element_size);
+
+    if(copy == NULL) {
+        return NULL;
+    }
+
+    memcpy(copy, element, element_size);
+    return copy;
+}
+
 
 
 /**
@@ -192,18 +209,20 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
  * Warning, do not use this function if you are sharing any nodes with another list
  * that is currently in use
  */
-ds_sll_error_t ds_sll_destroy(ds_sll_t* linkedList)
+ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t *linkedList)
 {
     ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
     while((linkedList->head != NULL) && (linkedList->head != linkedList->tail))
     {
-        ds_sll_deleteElementInNode(linkedList->head);
+        ds_sll_deleteElement(linkedList->head->element);
+        linkedList->head->element = NULL;
         linkedList->head = linkedList->head->next;
     }
 
     // free the list's tail
-    ds_sll_deleteElementInNode(linkedList->tail);
+    ds_sll_deleteElement(linkedList->tail->element);
+    linkedList->tail->element = NULL;
 
     // check if an error occurred and act accordingly
     if(linkedList-> head == linkedList->tail) {
@@ -269,13 +288,11 @@ ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element)
 ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, const size_t element_size)
 {
     ASSERT(linkedList != NULL);
-    void* copy = malloc(element_size);
+    void* copy = ds_sll_copyElement(element, element_size);
 
-    if(copy == NULL) {
+    if(copy == NULL)
         return DS_SLL_ELEMENT_CREATION_ERROR;
-    }
 
-    memcpy(copy, element, element_size);
     ds_sll_appendElement(linkedList, copy);
 
     return DS_SLL_NO_ERROR;
@@ -360,13 +377,11 @@ ds_sll_error_t ds_sll_insertElementAtIndex(ds_sll_t* linkedList, void* element, 
 ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* element, const size_t element_size, int index)
 {
     ASSERT((linkedList != NULL) && (index >= 0));
-    void* copy = malloc(element_size);
+    void* copy = ds_sll_copyElement(element, element_size);
 
     if(copy == NULL) {
         return DS_SLL_ELEMENT_CREATION_ERROR;
     }
-
-    memcpy(copy, element, element_size);
 
     return ds_sll_insertElementAtIndex(linkedList, copy, index);
 }
