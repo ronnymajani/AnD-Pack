@@ -32,5 +32,4 @@
 *.dSYM/
 
 # Project Files
-.*
-!/.gitignore
+.idea/workspace.xml
