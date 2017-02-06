@@ -43,10 +43,10 @@ RM = /home/ronnymajani/Apps/clion-2016.3.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ronnymajani/Workspace/AnD.pack
+CMAKE_SOURCE_DIR = "/home/ronnymajani/Workspace/AnD Pack"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/AnD_pack.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/AnD_pack.dir/flags.make
 
 CMakeFiles/AnD_pack.dir/library.c.o: CMakeFiles/AnD_pack.dir/flags.make
 CMakeFiles/AnD_pack.dir/library.c.o: ../library.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ronnymajani/Workspace/AnD.pack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/AnD_pack.dir/library.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/AnD_pack.dir/library.c.o   -c /home/ronnymajani/Workspace/AnD.pack/library.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/AnD_pack.dir/library.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/AnD_pack.dir/library.c.o   -c "/home/ronnymajani/Workspace/AnD Pack/library.c"
 
 CMakeFiles/AnD_pack.dir/library.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/AnD_pack.dir/library.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ronnymajani/Workspace/AnD.pack/library.c > CMakeFiles/AnD_pack.dir/library.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/ronnymajani/Workspace/AnD Pack/library.c" > CMakeFiles/AnD_pack.dir/library.c.i
 
 CMakeFiles/AnD_pack.dir/library.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/AnD_pack.dir/library.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ronnymajani/Workspace/AnD.pack/library.c -o CMakeFiles/AnD_pack.dir/library.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/ronnymajani/Workspace/AnD Pack/library.c" -o CMakeFiles/AnD_pack.dir/library.c.s
 
 CMakeFiles/AnD_pack.dir/library.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/AnD_pack.dir/library.c.o.provides.build: CMakeFiles/AnD_pack.dir/libr
 
 CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o: CMakeFiles/AnD_pack.dir/flags.make
 CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o: ../Data\ Structures/Linked\ Lists/SinglyLinkedList.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ronnymajani/Workspace/AnD.pack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o   -c "/home/ronnymajani/Workspace/AnD.pack/Data Structures/Linked Lists/SinglyLinkedList.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o   -c "/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.c"
 
 CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/ronnymajani/Workspace/AnD.pack/Data Structures/Linked Lists/SinglyLinkedList.c" > CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.c" > CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.i
 
 CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/ronnymajani/Workspace/AnD.pack/Data Structures/Linked Lists/SinglyLinkedList.c" -o CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.c" -o CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.s
 
 CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o.requires:
 
@@ -117,7 +117,7 @@ libAnD_pack.a: CMakeFiles/AnD_pack.dir/library.c.o
 libAnD_pack.a: CMakeFiles/AnD_pack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o
 libAnD_pack.a: CMakeFiles/AnD_pack.dir/build.make
 libAnD_pack.a: CMakeFiles/AnD_pack.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ronnymajani/Workspace/AnD.pack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library libAnD_pack.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library libAnD_pack.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/AnD_pack.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AnD_pack.dir/link.txt --verbose=$(VERBOSE)
 
@@ -136,6 +136,6 @@ CMakeFiles/AnD_pack.dir/clean:
 .PHONY : CMakeFiles/AnD_pack.dir/clean
 
 CMakeFiles/AnD_pack.dir/depend:
-	cd /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ronnymajani/Workspace/AnD.pack /home/ronnymajani/Workspace/AnD.pack /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug/CMakeFiles/AnD_pack.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/ronnymajani/Workspace/AnD Pack" "/home/ronnymajani/Workspace/AnD Pack" "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug" "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug" "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles/AnD_pack.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/AnD_pack.dir/depend
 

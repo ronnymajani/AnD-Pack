@@ -54,10 +54,10 @@ RM = /home/ronnymajani/Apps/clion-2016.3.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ronnymajani/Workspace/AnD.pack
+CMAKE_SOURCE_DIR = "/home/ronnymajani/Workspace/AnD Pack"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug"
 
 #=============================================================================
 # Target rules for target CMakeFiles/AnD_pack.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug
 CMakeFiles/AnD_pack.dir/all:
 	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/depend
 	$(MAKE) -f CMakeFiles/AnD_pack.dir/build.make CMakeFiles/AnD_pack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ronnymajani/Workspace/AnD.pack/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target AnD_pack"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" --progress-num=1,2,3 "Built target AnD_pack"
 .PHONY : CMakeFiles/AnD_pack.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/AnD_pack.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/AnD_pack.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/AnD_pack.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ronnymajani/Workspace/AnD.pack/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ronnymajani/Workspace/AnD Pack/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/AnD_pack.dir/rule
 
 # Convenience name for target.
