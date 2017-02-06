@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ronnymajani/Workspace/AnD.pack/Data Structures/Linked Lists/SinglyLinkedList.c
+assert.h
+-
+stdlib.h
+-
+SinglyLinkedList.h
+/home/ronnymajani/Workspace/AnD.pack/Data Structures/Linked Lists/SinglyLinkedList.h
+
+/home/ronnymajani/Workspace/AnD.pack/Data Structures/Linked Lists/SinglyLinkedList.h
+
+/home/ronnymajani/Workspace/AnD.pack/library.c
+library.h
+/home/ronnymajani/Workspace/AnD.pack/library.h
+stdio.h
+-
+
+/home/ronnymajani/Workspace/AnD.pack/library.h
+
