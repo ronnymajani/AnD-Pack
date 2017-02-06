@@ -4,13 +4,16 @@
 
 In Progress:
 ============
-Data Structures:
+Data Structures (code: ds):
 ----------------
-- **Singly Linked Lists (sll):**:
+- **Singly Linked Lists (code: sll):**:
 a versatile library containing many functions that allow you to use and manipulate
 singly linked lists. The code was written with certain abstractions in mind,
 that allow easy modification of the to adapt the library's functionality 
 to your requirements and design.
+
+Algorithms (code: al):
+----------------------
 
 
 ------------------------------
@@ -29,10 +32,27 @@ example: suffix for singly linked lists **ds_sll_**
 example function: **ds_sll_createNode(*...*)**
 
 example typedef: **ds_sll_node_t**
+
+Project Vision:
+---------------
+My goal is to provide a versatile, flexible, customizable set of libraries
+to make everyone's job easier.
+I want this set to be reliable that it can confidently be used with
+embedded systems and maintains a well-rounded balance between being
+an all-purpose customizable library, fast, and memory efficient where it's
+performance is suitable for your real time needs.
+
+Everyone is free to contribute as much as they want, but please, if you wish
+to contribute, try to put your best work out there. This library aims to be
+ an open source industry grade solution.
+ Which means we need to keep the aforementioned characterstics in mind
+ while developing this project.
+
+____________________________
  
 Plan:
 =====
-Data Structures:
+Data Structures (code: ds):
 ----------------
 - **Headless Linked Lists**
 - **Doubly Linked Lists**
@@ -43,8 +63,8 @@ Data Structures:
 - **Hash Tables**
 - **Array Lists**
 
-Algorithms:
------------
+Algorithms (code: al):
+----------------------
 - **Search**
   - Binary Search
   - Iterative Search
@@ -61,8 +81,8 @@ Algorithms:
   - Djikstra's
   - Bellman Ford's
 
-Parallel Algorithms:
---------------------
+Parallel Algorithms (code: pa):
+-------------------------------
 I also plan on implementing some parallel search algorithms.
 I plan on providing two implementations for each algorithm,
 one using POSIX multithreading, and the other using OpenCL.
