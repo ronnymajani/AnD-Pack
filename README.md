@@ -6,7 +6,7 @@ In Progress:
 ============
 Data Structures (code: ds):
 ----------------
-- **Singly Linked Lists (code: sll):**:
+- [**Singly Linked Lists (code: sll):**](./Data%20Structures/Linked%20Lists)
 a versatile library containing many functions that allow you to use and manipulate
 singly linked lists. The code was written with certain abstractions in mind,
 that allow easy modification of the to adapt the library's functionality 
