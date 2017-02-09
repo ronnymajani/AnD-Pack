@@ -33,3 +33,5 @@
 
 # Project Files
 \.idea/
+
+cmake-build-debug/AnDpack_test
