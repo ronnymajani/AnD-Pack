@@ -3,6 +3,8 @@
 #ifndef AND_PACK_SINGLYLINKEDLIST_H
 #define AND_PACK_SINGLYLINKEDLIST_H
 
+#include <stdlib.h>
+
 /**
  * @ingroup datastructures
  * @defgroup singlylinkedlist Singly Linked List
@@ -81,6 +83,8 @@ ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, con
 ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* node, int index);
 ds_sll_error_t ds_sll_insertElementAtIndex(ds_sll_t* linkedList, void* element, int index);
 ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* element, const size_t element_size, int index);
+// Deletion
+ds_sll_error_t ds_sll_deleteNodeAtIndex(ds_sll_t* linkedList, int index);
 /* ------------------------------------------------------------------ */
 
 

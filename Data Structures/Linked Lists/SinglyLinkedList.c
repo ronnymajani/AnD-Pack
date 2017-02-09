@@ -40,20 +40,20 @@
  * + Create Node: Create a new node with the given element
  * + Insert Node: Insert a given node at the specified index
  * + Append Node: Append a given node to the end of the linked list
- * - Delete Node: Delete the node at the given index
+ * + Delete Node: Delete the node at the given index
  * + Get Node: Get the node at the given index
- * - Extract Element From Node: Extract the element from a given node
+ * + Extract Element From Node: Extract the element from a given node
  * - Find: Find an element in the linked list using the given equality function
  * - Split: Split the linked list at the given index
  * + Execute Function on Elements: Executes the given function on the element of every node
  * + Length Of: Get the length of the linked list
  **/
 
+#include "SinglyLinkedList.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <memory.h>
-#include <stdio.h>
-#include "SinglyLinkedList.h"
+
 
 #define ASSERT assert
 
@@ -129,6 +129,18 @@ ds_sll_node_t* ds_sll_createNode(void* element)
     }
 }
 
+
+/**
+ * @brief Delete the given node; Free all allocated resources
+ * @param node The node to delete
+ */
+ void ds_sll_deleteNode(ds_sll_node_t* node)
+{
+    ds_sll_deleteElement(node->element);
+    free(node);
+}
+
+
 /**
  * @brief Copy a given element to be stored in a node
  * @param element The element to copy
@@ -202,9 +214,72 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
 
 
 /**
+ * @brief Delete the node at the given index from the singly linked list
+ * @param linkedList The singly linked list to delete the node from
+ * @param index The index of the node to delete
+ * @return @ref ds_sll_error_t Error code representing the status of the function
+ */
+ ds_sll_error_t ds_sll_deleteNodeAtIndex(ds_sll_t* linkedList, int index)
+{
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
+
+    ds_sll_node_t *todel = linkedList->head;
+
+    // If deleting the list's head
+    if(index == 0) {
+        if(linkedList->head == linkedList->tail) {
+            ds_sll_deleteNode(linkedList->head);
+            linkedList->head = NULL;
+            linkedList->tail = NULL;
+        }
+        else {
+            linkedList->head = todel->next;
+            ds_sll_deleteNode(todel);
+        }
+        return DS_SLL_NO_ERROR;
+    }
+
+    // Otherwise Traverse the list until the given node right before the given index
+    for(;(todel != NULL) && (todel != linkedList->tail) && (index > 1); index--, todel = todel->next);
+
+    // Error traversing to desired index
+    if(todel == NULL) {
+        return DS_SLL_BROKEN_LIST_ERROR;
+    }
+    else if((index != 1)) {
+        if(todel == linkedList->tail) {
+            return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
+        }
+        else {
+            return DS_SLL_BROKEN_LIST_ERROR;
+        }
+    }
+    // Broken list
+    else if(todel->next == NULL) {
+        return DS_SLL_BROKEN_LIST_ERROR;
+    }
+    // Delete tail
+    else if(todel->next == linkedList->tail) {
+        linkedList->tail = todel; // move the tail pointer one node back (todel)
+        todel = todel->next; // move the todel pointer one node forward (the old tail)
+        linkedList->tail->next = NULL; // unlink the old tail from the linked list chain
+        ds_sll_deleteNode(todel); // delete the old tail
+        return DS_SLL_NO_ERROR;
+    }
+    else {
+        ds_sll_node_t *prev = todel; // save a pointer to the current node (the node before the node to be deleted)
+        todel = todel->next; // set todel to point to the node to be deleted
+        prev->next = todel->next; // unlink the todel node and make prev point to the next node in the list
+        ds_sll_deleteNode(todel); // delete the todel node
+        return DS_SLL_NO_ERROR;
+    }
+}
+
+
+/**
  * @brief Destroy a Singly Linked List
  * @param linkedList The singly linked list to destroy
- * @return 0 unless an error occurred (unable to free all nodes)
+ * @return @ref ds_sll_error_t Error code representing the status of the function
  * This function will delete all the nodes and deallocate all related memory.
  * Warning, do not use this function if you are sharing any nodes with another list
  * that is currently in use
@@ -215,9 +290,9 @@ ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t *linkedList)
 
     while((linkedList->head != NULL) && (linkedList->head != linkedList->tail))
     {
-        ds_sll_deleteElement(linkedList->head->element);
-        linkedList->head->element = NULL;
-        linkedList->head = linkedList->head->next;
+        ds_sll_node_t *todel = linkedList->head;
+        linkedList->head = todel->next;
+        ds_sll_deleteNode(todel);
     }
 
     // free the list's tail
@@ -328,17 +403,32 @@ ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* nod
         ds_sll_node_t *prev = linkedList->head;
 
         // iterate to the node right before the node at the given index
-        for (; (prev != NULL) && (index != 1); index--, prev = prev->next);
+        for (; (prev != NULL) && (prev != linkedList->tail) && (index != 1); index--, prev = prev->next);
 
-        if((index != 1) || (prev == NULL)) {
+        // Error traversing to desired index
+        if(prev == NULL) {
             return DS_SLL_BROKEN_LIST_ERROR;
-        } else {
-            if (prev->next == NULL) { // if a NULL node was reached
+        }
+        else if((index != 1)) {
+            if(prev == linkedList->tail) {
                 return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
-            } else { // the correct node was reached
-                node->next = prev->next;
-                prev->next = node;
             }
+            else {
+                return DS_SLL_BROKEN_LIST_ERROR;
+            }
+        }
+            // Desired index reached:
+        else if(prev == linkedList->tail) { // desired index is the tail
+            prev->next = node;
+            linkedList->tail = node;
+            return DS_SLL_NO_ERROR;
+        }
+        else if (prev->next == NULL) { // desired index is NULL: list is broken
+            return DS_SLL_BROKEN_LIST_ERROR;
+        }
+        else { // desired index reached, not tail
+            node->next = prev->next;
+            prev->next = node;
         }
     }
     return DS_SLL_NO_ERROR;

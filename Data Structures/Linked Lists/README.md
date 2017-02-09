@@ -44,6 +44,7 @@ the node to the end of the list
 at the given index in the list.
 - **insertElementCopyAtIndex**: Create a new node and store a copy of the given element and insert
 the new node at the given index in the list.
+- **deleteNodeAtIndex**: Delete the node located at the given index, and free allocated resources.
 
 
 I have abstracted the functions *storeElementInNode*, *deleteElement*, and *copyElement*

@@ -13,26 +13,40 @@ void debug() {
 
 int main() {
     ds_sll_t* mylist = ds_sll_newSinglyLinkedList();
-    int x = 75;
+    int x;
 
+    x = 75;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
     x = 23;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
     x = 63;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
 
+    ds_sll_executeFunctionOnElements(mylist, printElement);
+    printf("---------------\n");
 
+    ds_sll_deleteNodeAtIndex(mylist, 1);
+    printf("node %d deleted from list\n", 1);
+
+    ds_sll_executeFunctionOnElements(mylist, printElement);
+    printf("---------------\n");
 
     x = 77;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
     x = 91;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
+
+    ds_sll_executeFunctionOnElements(mylist, printElement);
+    printf("---------------\n");
+
     x = 444;
     ds_sll_insertElementCopyAtIndex(mylist, &x, sizeof(int), 4);
+    printf("element %d inserted at index %d\n", x, 4);
     x = 234155;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
 
     ds_sll_executeFunctionOnElements(mylist, printElement);
+    printf("---------------\n");
 
     void* res = ds_sll_getElementAtIndex(mylist, 2);
     if(res != NULL) {
