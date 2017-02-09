@@ -44,7 +44,7 @@
  * + Get Node: Get the node at the given index
  * + Extract Element From Node: Extract the element from a given node
  * - Find: Find an element in the linked list using the given equality function
- * - Split: Split the linked list at the given index
+ * + Split: Split the linked list at the given index
  * + Execute Function on Elements: Executes the given function on the element of every node
  * + Length Of: Get the length of the linked list
  **/
@@ -195,6 +195,45 @@ ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index)
 
 
 /**
+ * @brief Taverse a linked list to the node at a given index
+ * @param linkedList The singly linked list to traverse
+ * @param node A node pointer to traverse with
+ * @param index The index to traverse to
+ * @return @ref ds_sll_error_t Error Code.
+ *
+ * This function will traverse the given list using the given node pointer until the given index.
+ * The functions also returns an error code indicating the success status.
+ * This functions intended purpose is to be used with other functions in this library that require
+ * traversing a singly linked list.
+ * Basically it has the side effect of setting the given node pointer to point to the desired node (if no error occurred)
+ * and also returns an error code indicating the status of the traversal.
+ */
+ ds_sll_error_t ds_sll_traverseNodeToIndex(const ds_sll_t* linkedList, ds_sll_node_t** node, int index)
+{
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
+    *node = linkedList->head;
+    // iterate to the node right before the node at the given index
+    for (; (*node != NULL) && (*node != linkedList->tail) && (index != 0); index--, *node = (*node)->next);
+
+    // Error traversing to desired index
+    if(*node == NULL) {
+        return DS_SLL_BROKEN_LIST_ERROR;
+    }
+    else if(index != 0) {
+        if(*node == linkedList->tail) {
+            return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
+        }
+        else {
+            return DS_SLL_BROKEN_LIST_ERROR;
+        }
+    }
+    else {
+        return DS_SLL_NO_ERROR;
+    }
+}
+
+
+/**
  * @brief Get the element contained in the node at the given index in the specified singly linked list
  * @param linkedList The singly linked list to get the node from
  * @param index The index of the node you want to get (starting with 0)
@@ -240,19 +279,12 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
     }
 
     // Otherwise Traverse the list until the given node right before the given index
-    for(;(todel != NULL) && (todel != linkedList->tail) && (index > 1); index--, todel = todel->next);
+    //traverse `todel` to the node right before the node at the given index (node at index-1)
+    ds_sll_error_t traverseStatus = ds_sll_traverseNodeToIndex(linkedList, &todel, index-1);
 
     // Error traversing to desired index
-    if(todel == NULL) {
-        return DS_SLL_BROKEN_LIST_ERROR;
-    }
-    else if((index != 1)) {
-        if(todel == linkedList->tail) {
-            return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
-        }
-        else {
-            return DS_SLL_BROKEN_LIST_ERROR;
-        }
+    if(traverseStatus != DS_SLL_NO_ERROR) {
+        return traverseStatus;
     }
     // Broken list
     else if(todel->next == NULL) {
@@ -398,26 +430,17 @@ ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* nod
             node->next = linkedList->head;
             linkedList->head = node;
         }
+        return DS_SLL_NO_ERROR;
     }
     else {
-        ds_sll_node_t *prev = linkedList->head;
+        ds_sll_node_t *prev = NULL;
+        //traverse `prev` to the node right before the node at the given index (node at index-1)
+        ds_sll_error_t traverseStatus = ds_sll_traverseNodeToIndex(linkedList, &prev, index-1);
 
-        // iterate to the node right before the node at the given index
-        for (; (prev != NULL) && (prev != linkedList->tail) && (index != 1); index--, prev = prev->next);
+        if(traverseStatus != DS_SLL_NO_ERROR) {
+            return traverseStatus;
+        }
 
-        // Error traversing to desired index
-        if(prev == NULL) {
-            return DS_SLL_BROKEN_LIST_ERROR;
-        }
-        else if((index != 1)) {
-            if(prev == linkedList->tail) {
-                return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
-            }
-            else {
-                return DS_SLL_BROKEN_LIST_ERROR;
-            }
-        }
-            // Desired index reached:
         else if(prev == linkedList->tail) { // desired index is the tail
             prev->next = node;
             linkedList->tail = node;
@@ -429,9 +452,9 @@ ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* nod
         else { // desired index reached, not tail
             node->next = prev->next;
             prev->next = node;
+            return DS_SLL_NO_ERROR;
         }
     }
-    return DS_SLL_NO_ERROR;
 }
 
 
@@ -484,11 +507,13 @@ ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* eleme
  * It should take one void pointer argument, and return a 1 if an error occurred or a 0 otherwise.
  * @return -1 if no error occurred; the index of the node where the error occurred at otherwise.
  * This function traverses the linked list and for each node it traverses, executes the given function
- * passing the element contained in the current node as a parameter. If the function returns a 1, or a null node
+ * passing the element contained in the current node as a parameter. If the function returns DS_SLL_FUNCTION_EXECUTION_ERROR, or a null node
  * is reached before the entire list has been traversed (reached the tail), then this function will halt and return
  * the index of the node where the error was generated.
+ * Otherwise if the function successfully traversed the entire list, or one of the function calls returned DS_SLL_STOP_EXECUTION
+ * then the function will halt and return -1 indicating successful execution.
  */
-int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, int))
+int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int))
 {
     ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
@@ -497,8 +522,11 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, in
 
     // Traverse the linked list `index` times or until end of list or NULL is reached
     for(index = 0; curr != linkedList->tail; index++){
-        if((curr == NULL) || (func(ds_sll_extractElementFromNode(curr), index) == 1)) { // an error occurred!
+        ds_sll_func_return_t returncode = func(ds_sll_extractElementFromNode(curr), index);
+        if((curr == NULL) || (returncode == DS_SLL_FUNCTION_EXECUTION_ERROR)) { // an error occurred!
             return index;
+        } else if(returncode == DS_SLL_STOP_EXECUTION) {
+            return -1;
         }
         // iterate to next node
         curr = curr->next;
@@ -511,13 +539,14 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, in
     return -1;
 }
 
+
 /**
  * @brief Calculates the length of the singly linked list (by traversing it)
  * @param linkedList The singly linked list that's length you seek
  * @return An Integer representing the length of the linked list,
- *         or a negative integer who's absolute value represents the index where and error occurred.
+ *         or a negative integer who's absolute value represents the index where an error occurred.
  */
-int ds_sll_calculateLength(ds_sll_t* linkedList)
+int ds_sll_calculateLength(const ds_sll_t* linkedList)
 {
     ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
@@ -534,4 +563,46 @@ int ds_sll_calculateLength(ds_sll_t* linkedList)
     return index + 1;
 }
 
+
+/**
+ * @brief Split Singly Linked List into two singly linked lists at the given index.
+ * @param firstLinkedList The original Singly Linked List to be split, will be updated to point to the first sublist created (must have len > 1).
+ * @param secondLinkedList A new (initialized) Singly Linked List header to be set to point to the second sublist created
+ * @param index The index where the singly linked list will be split (the new tail of the current singly linked list).
+ * @return @ref ds_sll_error_t Error Code.
+ *
+ * The function will shorten the given singly linked list so that it's tail now points to the node located
+ * at the given index, and it will create a new singly linked list header where it's head will
+ * point to the node at right after the given index (node at index + 1)
+ * and it's tail will point to the tail of the original given linked list.
+ * After the function completes successfully:
+ * The firstLinkedList will point to the sublist starting with the original head up to the node specified by the given index.
+ * The secondLinkedList will point to the sublist starting with the node right after the node at the given index up to the original tail.
+ * It is expected that you pass a new singly linked list header as the secondLinkedList parameter
+ */
+ds_sll_error_t ds_sll_splitSinglyLinkedListAtIndex(ds_sll_t *firstLinkedList, ds_sll_t* secondLinkedList, int index)
+{
+    ASSERT((firstLinkedList != NULL) && (firstLinkedList->head != NULL) && (firstLinkedList->tail != NULL) && (index >= 0));
+
+    // check that the linked list is splittable
+    // cannot split a one element linked list
+    if(firstLinkedList->head == firstLinkedList->tail) {
+        return DS_SLL_LIST_TOO_SMALL_ERROR;
+    }
+
+    ds_sll_node_t *newtail;
+    ds_sll_error_t traverseStatus = ds_sll_traverseNodeToIndex(firstLinkedList, &newtail, index);
+
+    if(traverseStatus != DS_SLL_NO_ERROR) {
+        return traverseStatus;
+    }
+    else if (newtail->next == NULL) {
+        return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
+    }
+
+    secondLinkedList->tail = firstLinkedList->tail; // set secondLinkedList tail to equal original tail
+    firstLinkedList->tail = newtail; // update the firstLinkedList tail to equal the new tail where the split occurred
+    secondLinkedList->head = newtail->next; // set secondLinkedList head to equal the node after newtail
+    return DS_SLL_NO_ERROR;
+}
 

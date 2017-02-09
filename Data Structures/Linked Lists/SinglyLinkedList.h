@@ -54,8 +54,20 @@ typedef enum ds_sll_error_t {
     DS_SLL_ELEMENT_CREATION_ERROR, /**< Error allocating memory for an element */
     DS_SLL_LIST_CREATION_ERROR, /**< Error creating a new singly linked list */
     DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR, /**< The index is out of bounds */
-    DS_SLL_BROKEN_LIST_ERROR /**< Error traversing a singly linked list till the end (the list is broken) */
+    DS_SLL_BROKEN_LIST_ERROR, /**< Error traversing a singly linked list till the end (the list is broken) */
+    DS_SLL_LIST_TOO_SMALL_ERROR, /**< The length of given singly linked list is too small */
+    DS_SLL_FUNCTION_EXECUTION_ERROR /**< A function that was being executed on a Singly Linked List returned an Error */
 } ds_sll_error_t;
+
+/**
+ * Singly Linked List Function return values.
+ * These are the return values that a function mapped to a singly linked list should return
+ */
+typedef enum ds_sll_func_return_t {
+    DS_SLL_CONTINUE_EXECUTION = 1, /**< Function ran successfully. Continue to next node */
+    DS_SLL_STOP_EXECUTION = 0, /**< Function has completed it's goal. Stop execution */
+    DS_SLL_ERROR /**< Function encountered an Error */
+} ds_sll_func_return_t;
 /* ------------------------------------------------------------------ */
 
 
@@ -70,8 +82,9 @@ void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element);
 void ds_sll_deleteElement(void* node);
 void* ds_sll_copyElement(void* element, const size_t element_size);
 // Operations on List
-int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, int (*func)(void*, int));
-int ds_sll_calculateLength(ds_sll_t* linkedList);
+int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int));
+int ds_sll_calculateLength(const ds_sll_t* linkedList);
+ds_sll_error_t ds_sll_splitSinglyLinkedListAtIndex(ds_sll_t *firstLinkedList, ds_sll_t* secondLinkedList, int index);
 // Retrieval
 ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index);
 void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index);
@@ -85,6 +98,8 @@ ds_sll_error_t ds_sll_insertElementAtIndex(ds_sll_t* linkedList, void* element, 
 ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* element, const size_t element_size, int index);
 // Deletion
 ds_sll_error_t ds_sll_deleteNodeAtIndex(ds_sll_t* linkedList, int index);
+// Helper Functions
+ds_sll_error_t ds_sll_traverseNodeToIndex(const ds_sll_t* linkedList, ds_sll_node_t** node, int index);
 /* ------------------------------------------------------------------ */
 
 
