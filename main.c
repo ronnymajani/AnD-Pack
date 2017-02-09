@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include "Data Structures/Linked Lists/SinglyLinkedList.h"
 
-int printElement(void* element, int index) {
+ds_sll_func_return_t printElement(void* element, int index) {
     printf("%d >> %d\n", index, *((int*)element));
-    return 0;
-}
-
-void debug() {
-    static int i = 0;
-    printf("#DEBUG %d\n", i++);
+    return DS_SLL_CONTINUE_EXECUTION;
 }
 
 int main() {
     ds_sll_t* mylist = ds_sll_newSinglyLinkedList();
+    ds_sll_t* newlist = ds_sll_newSinglyLinkedList();
     int x;
+    ds_sll_error_t err;
+
+    x = 111;
+    err = ds_sll_insertElementCopyAtIndex(mylist, &x, sizeof(int), 0);
+    printf("element %d inserted at index %d\n", x, 0);
 
     x = 75;
     ds_sll_appendElementCopy(mylist, &x, sizeof(int));
@@ -40,12 +41,18 @@ int main() {
     printf("---------------\n");
 
     x = 444;
-    ds_sll_insertElementCopyAtIndex(mylist, &x, sizeof(int), 4);
+    err = ds_sll_insertElementCopyAtIndex(mylist, &x, sizeof(int), 4);
     printf("element %d inserted at index %d\n", x, 4);
-    x = 234155;
-    ds_sll_appendElementCopy(mylist, &x, sizeof(int));
 
     ds_sll_executeFunctionOnElements(mylist, printElement);
+    printf("---------------\n");
+
+    ds_sll_splitSinglyLinkedListAtIndex(mylist, newlist, 3);
+    printf("split list at index %d\n", 3);
+
+    ds_sll_executeFunctionOnElements(mylist, printElement);
+    printf("+++++++++++++++\n");
+    ds_sll_executeFunctionOnElements(newlist, printElement);
     printf("---------------\n");
 
     void* res = ds_sll_getElementAtIndex(mylist, 2);

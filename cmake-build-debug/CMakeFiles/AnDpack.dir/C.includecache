@@ -15,10 +15,6 @@ stdlib.h
 -
 memory.h
 -
-stdio.h
--
-SinglyLinkedList.h
-/home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.h
 
 /home/ronnymajani/Workspace/AnD Pack/Data Structures/Linked Lists/SinglyLinkedList.h
 stdlib.h
