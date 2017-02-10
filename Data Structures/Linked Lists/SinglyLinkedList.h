@@ -64,9 +64,9 @@ typedef enum ds_sll_error_t {
  * These are the return values that a function mapped to a singly linked list should return
  */
 typedef enum ds_sll_func_return_t {
-    DS_SLL_CONTINUE_EXECUTION = 1, /**< Function ran successfully. Continue to next node */
-    DS_SLL_STOP_EXECUTION = 0, /**< Function has completed it's goal. Stop execution */
-    DS_SLL_ERROR /**< Function encountered an Error */
+    DS_SLL_CONTINUE_EXECUTION, /**< Function ran successfully. Continue to next node */
+    DS_SLL_STOP_EXECUTION, /**< Function has completed it's goal. Stop execution */
+    DS_SLL_EXECUTION_ERROR /**< Function encountered an Error */
 } ds_sll_func_return_t;
 /* ------------------------------------------------------------------ */
 
@@ -82,12 +82,13 @@ void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element);
 void ds_sll_deleteElement(void* node);
 void* ds_sll_copyElement(void* element, const size_t element_size);
 // Operations on List
-int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int));
+int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int, void*), void *sharedData);
 int ds_sll_calculateLength(const ds_sll_t* linkedList);
 ds_sll_error_t ds_sll_splitSinglyLinkedListAtIndex(ds_sll_t *firstLinkedList, ds_sll_t* secondLinkedList, int index);
-// Retrieval
+// Retrieval and Search
 ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index);
 void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index);
+ds_sll_node_t* ds_sll_findNodeContainingElement(ds_sll_t* linkedList, void* element, int (*equalityFunc)(void*, void*), int *resultIndex);
 // Append
 void ds_sll_appendNode(ds_sll_t* linkedList, ds_sll_node_t* node);
 ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element);

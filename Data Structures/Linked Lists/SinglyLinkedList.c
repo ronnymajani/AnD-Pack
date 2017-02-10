@@ -211,6 +211,7 @@ ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index)
  ds_sll_error_t ds_sll_traverseNodeToIndex(const ds_sll_t* linkedList, ds_sll_node_t** node, int index)
 {
     ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
+
     *node = linkedList->head;
     // iterate to the node right before the node at the given index
     for (; (*node != NULL) && (*node != linkedList->tail) && (index != 0); index--, *node = (*node)->next);
@@ -504,16 +505,22 @@ ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* eleme
  * @brief Executes a function on each element in the linked list in order
  * @param linkedList The singly linked list to map the function to
  * @param func A function to execute on each element. Should be in the form: int func(void* element)
- * It should take one void pointer argument, and return a 1 if an error occurred or a 0 otherwise.
+ *        It should take one void pointer argument, and return a 1 if an error occurred or a 0 otherwise.
+ * @param sharedData A pointer that is passed to your function that you can use to share data to and from your function,
+ *        such as having one of the function calls return a value via this pointer, or passing an extra parameter to your function.
  * @return -1 if no error occurred; the index of the node where the error occurred at otherwise.
+ *
  * This function traverses the linked list and for each node it traverses, executes the given function
  * passing the element contained in the current node as a parameter. If the function returns DS_SLL_FUNCTION_EXECUTION_ERROR, or a null node
  * is reached before the entire list has been traversed (reached the tail), then this function will halt and return
  * the index of the node where the error was generated.
  * Otherwise if the function successfully traversed the entire list, or one of the function calls returned DS_SLL_STOP_EXECUTION
  * then the function will halt and return -1 indicating successful execution.
+ *
+ * Your given function will be called on each node in sequence (starting from the head) until the tail or until one of the function calls
+ * returns DS_SLL_STOP_EXECUTION or DS_SLL_FUNCTION_EXECUTION_ERROR
  */
-int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int))
+int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int, void*), void *sharedData)
 {
     ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
@@ -522,8 +529,8 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t 
 
     // Traverse the linked list `index` times or until end of list or NULL is reached
     for(index = 0; curr != linkedList->tail; index++){
-        ds_sll_func_return_t returncode = func(ds_sll_extractElementFromNode(curr), index);
-        if((curr == NULL) || (returncode == DS_SLL_FUNCTION_EXECUTION_ERROR)) { // an error occurred!
+        ds_sll_func_return_t returncode = func(ds_sll_extractElementFromNode(curr), index, sharedData);
+        if((curr == NULL) || (returncode == DS_SLL_EXECUTION_ERROR)) { // an error occurred!
             return index;
         } else if(returncode == DS_SLL_STOP_EXECUTION) {
             return -1;
@@ -532,7 +539,7 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t 
         curr = curr->next;
     }
 
-    if((curr != linkedList->tail) || (func(ds_sll_extractElementFromNode(curr), index) == 1)) {
+    if((curr != linkedList->tail) || (func(ds_sll_extractElementFromNode(curr), index, sharedData) == 1)) {
         return index;
     }
 
@@ -603,6 +610,57 @@ ds_sll_error_t ds_sll_splitSinglyLinkedListAtIndex(ds_sll_t *firstLinkedList, ds
     secondLinkedList->tail = firstLinkedList->tail; // set secondLinkedList tail to equal original tail
     firstLinkedList->tail = newtail; // update the firstLinkedList tail to equal the new tail where the split occurred
     secondLinkedList->head = newtail->next; // set secondLinkedList head to equal the node after newtail
+    firstLinkedList->tail->next = NULL; // break the link between the two newly created linked lists
     return DS_SLL_NO_ERROR;
+}
+
+
+/**
+ * @brief Find the node(s) containing the given element
+ * @param linkedList The linkedList to search in.
+ * @param element The element to search for,
+ *        If set to NULL, the function will continue the search from the where the previous call left off,
+ *        (used if the list contains multiple instances of the same element and you wish to iterate through them).
+ * @param equalityFunc A function that compares two elements and returns 1 if equal and 0 if not equal.
+ * @param resultIndex Optional parameter, if not NULL will be set to equal the index of the node that was found to contain the given element.
+ * @return The node containing the given element. NULL if not found or error occurred.
+ *
+ * This function can be used either to retrieve one or more nodes containing the given element,
+ * (by calling the function once by passing the element that you are searching for, and setting the element parameter
+ * to NULL to continue searching for other nodes after the previously found node),
+ * and it can also be used to get the index of the node containing the desired element via the resultIndex parameter.
+ */
+ ds_sll_node_t* ds_sll_findNodeContainingElement(ds_sll_t* linkedList, void* element, int (*equalityFunc)(void*, void*), int *resultIndex)
+{
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
+
+    static void* searchTerm = NULL;
+    static ds_sll_node_t* node = NULL;
+    static int index = 0;
+
+    // if a new search is initiated, initializes the static variables
+    if(element != NULL) {
+        searchTerm = element;
+        index = 0;
+        node = linkedList->head;
+    }
+    // if we are continuing a previous search, iterate to the next node to continue our search.
+    else {
+        index++;
+        node = node->next;
+    }
+
+    // iterate to the node right before the node at the given index
+    for (; (node != NULL); node = node->next, index++) {
+        if(equalityFunc(node->element, searchTerm) == 1) {
+            if(resultIndex != NULL) { // set the resultIndex parameter if it is not NULL
+                *resultIndex = index;
+            }
+            return node;
+        }
+    }
+
+    return NULL;
+
 }
 
