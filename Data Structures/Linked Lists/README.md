@@ -32,8 +32,10 @@ Available Functions:
 - **copyElement**: Create a copy of a given element
 - **executeFunctionOnElements**: Execute a given function on all the nodes in the list
 - **calculateLength**: Calculates the length of the linked list
+- **splitSinglyLinkedListAtIndex**: Splits a linked list into two at the given index
 - **getNodeAtIndex**: Retrieve the node at the given index
 - **getElementAtIndex**: Retrieve the element in the node at the given index
+- **findNodeContainingElement**: Searches the linked list for the node containing the given element
 - **appendNode**: Append a node to the end of the list
 - **appendElement**: Create a new node and store the given element in it and append the node to
 the end of the list
@@ -45,7 +47,8 @@ at the given index in the list.
 - **insertElementCopyAtIndex**: Create a new node and store a copy of the given element and insert
 the new node at the given index in the list.
 - **deleteNodeAtIndex**: Delete the node located at the given index, and free allocated resources.
-
+- **traverseNodeToIndex**: A helper function that traverses a linked list and sets the given pointer
+to point to the node at the given index. It also returns an error code detailing what kind of error occurred.
 
 I have abstracted the functions *storeElementInNode*, *deleteElement*, and *copyElement*
 so you can easily change the way data is being stored in the node. Maybe the void pointers being

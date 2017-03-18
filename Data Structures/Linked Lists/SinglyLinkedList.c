@@ -43,15 +43,16 @@
  * + Delete Node: Delete the node at the given index
  * + Get Node: Get the node at the given index
  * + Extract Element From Node: Extract the element from a given node
- * - Find: Find an element in the linked list using the given equality function
+ * + Find: Find an element in the linked list using the given equality function
  * + Split: Split the linked list at the given index
  * + Execute Function on Elements: Executes the given function on the element of every node
  * + Length Of: Get the length of the linked list
  **/
 
+// TODO: abstract (node->next) into an inline function
+
 #include "SinglyLinkedList.h"
 #include <assert.h>
-#include <stdlib.h>
 #include <memory.h>
 
 
@@ -59,7 +60,7 @@
 
 /**
  * @brief Create a new singly linked list
- * @return Returns a new Singly Linked List struct
+ * @return Returns a pointer to a new Singly Linked List struct (linked list header)
  */
 ds_sll_t* ds_sll_newSinglyLinkedList()
 {
@@ -99,7 +100,7 @@ ds_sll_node_t* ds_sll_createNode(void* element)
  * @param node The node that contains the element you wish to extract
  * @return The element contained within the given node (void *)
  */
- void* ds_sll_extractElementFromNode(ds_sll_node_t* node)
+ inline void* ds_sll_extractElementFromNode(ds_sll_node_t* node)
 {
     return node->element;
 }
@@ -113,7 +114,7 @@ ds_sll_node_t* ds_sll_createNode(void* element)
  * stored and extracted within nodes. Note that at the moment of this writing, the nodes store void pointers. Though
  * you may use those pointers as a gate to more complex operations as you see fit.
  */
- void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element)
+ inline void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element)
 {
     node->element = element;
 }
@@ -122,7 +123,7 @@ ds_sll_node_t* ds_sll_createNode(void* element)
  * @brief Delete an element contained within a node and free any allocated resources
  * @param element The element
  */
- void ds_sll_deleteElement(void* element)
+ inline void ds_sll_deleteElement(void* element)
 {
     if(element != NULL) {
         free(element);
@@ -134,7 +135,7 @@ ds_sll_node_t* ds_sll_createNode(void* element)
  * @brief Delete the given node; Free all allocated resources
  * @param node The node to delete
  */
- void ds_sll_deleteNode(ds_sll_node_t* node)
+ inline void ds_sll_deleteNode(ds_sll_node_t* node)
 {
     ds_sll_deleteElement(node->element);
     free(node);
@@ -197,7 +198,7 @@ ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index)
 /**
  * @brief Taverse a linked list to the node at a given index
  * @param linkedList The singly linked list to traverse
- * @param node A node pointer to traverse with
+ * @param node A free node pointer to traverse with
  * @param index The index to traverse to
  * @return @ref ds_sll_error_t Error Code.
  *
@@ -632,7 +633,7 @@ ds_sll_error_t ds_sll_splitSinglyLinkedListAtIndex(ds_sll_t *firstLinkedList, ds
  */
  ds_sll_node_t* ds_sll_findNodeContainingElement(ds_sll_t* linkedList, void* element, int (*equalityFunc)(void*, void*), int *resultIndex)
 {
-    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL) && (index >= 0));
+    ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
     static void* searchTerm = NULL;
     static ds_sll_node_t* node = NULL;
