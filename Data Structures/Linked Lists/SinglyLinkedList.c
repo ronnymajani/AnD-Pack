@@ -1,5 +1,6 @@
 /**
- * @file singlylinkedlist.c
+ * @ingroup singlylinkedlist
+ * @file SinglyLinkedList.c
  * @brief AnD >> Singly Linked List library (ds_sll)
  *
  * Category: Data Structures >> Linked Lists
@@ -9,7 +10,7 @@
  * @ref ds_sll_t
  * @ref ds_sll_node_t
  *
- * Usage:
+ * ### Usage:
  * This version of singly linked list does not support multiple linked lists being combined manually.
  * eg: appending a node that already exists in the middle of list A to the tail of list B
  * Doing such an operation by logic should automatically mean that list A now contains the same nodes as list B after
@@ -20,7 +21,7 @@
  * linked list (a linked list that does not keep track of the head and tail but simply uses any given node to traverse)
  * in the future which allows much more flexibility but at the expense of not noing whether or not the list is broken or corrupt.
  *
- * Note:
+ * ###Note:
  * I follow DbC (Design by Contract) with my code, meaning functions that
  * are called with illogical or invalid arguments will cause the program to abrupt
  * using the assert functionality. Feel free to redefine how assert works
@@ -31,8 +32,7 @@
  * @see ds_sll_t
  * @see ds_sll_node_t
  *
- * Operations:
- * -----------
+ * ### Operations:
  * + New: create a new Singly Linked List
  * + Destroy: delete all elements from the Singly Linked List and free all
  * resources
@@ -55,7 +55,11 @@
 #include <assert.h>
 #include <memory.h>
 
-
+/**
+ * @brief Macro definition for ASSERT
+ * Used to enforce Design by Contract coding
+ * Typically disabled on release
+ */
 #define ASSERT assert
 
 /**
@@ -145,6 +149,7 @@ ds_sll_node_t* ds_sll_createNode(void* element)
 /**
  * @brief Copy a given element to be stored in a node
  * @param element The element to copy
+ * @param element_size The size of the given element (in bytes) to be copied
  * @return The new copy of the given element
  */
  void* ds_sll_copyElement(void* element, const size_t element_size)
@@ -392,6 +397,7 @@ ds_sll_error_t ds_sll_appendElement(ds_sll_t* linkedList, void* element)
  * and append this node to the end of the given singly linked list.
  * @param linkedList The singly linked list to append to
  * @param element The element to copy and append the new copy to the end of the given list
+ * @param element_size The size in bytes of the given element
  * @return 1 if an error occurred; 0 otherwise
  */
 ds_sll_error_t ds_sll_appendElementCopy(ds_sll_t* linkedList, void* element, const size_t element_size)
@@ -484,7 +490,8 @@ ds_sll_error_t ds_sll_insertElementAtIndex(ds_sll_t* linkedList, void* element, 
 /**
  * @brief Create a new node with a copy of the given element and inserts the new node at the chosen index
  * @param linkedList The singly linked list to insert the node into
- * @param element The element that you wish to store a copy of in the new node
+ * @param element A pointer to the element that you wish to store a copy of in the new node
+ * @param element_size The size (in bytes) of the given element
  * @param index The index where the node should be inserted
  * @return An error code indicating the completion status of the function
  * @see ds_sll_error_t

@@ -12,7 +12,7 @@
  */
 
 /**
- * @file singlylinkedlist.h
+ * @file SinglyLinkedList.h
  * @brief Singly Linked List header file
  *
  * Category: Data Structures >> Linked Lists >> Singly Linked List
@@ -32,7 +32,7 @@ typedef struct ds_sll_node_t {
     /** Pointer to the data being stored in the node.
      * User is responsible for typecasting this pointer appropriately */
     void* element;
-    struct ds_sll_node_t* next;  // pointer to the next node in the list
+    struct ds_sll_node_t* next;  /**< pointer to the next node in the list */
 } ds_sll_node_t;
 
 /**
@@ -40,8 +40,8 @@ typedef struct ds_sll_node_t {
  * This struct holds the information that identifies a Singly Linked List
  */
 typedef struct ds_sll_t {
-    ds_sll_node_t* head;  // pointer to the first node in the linked list
-    ds_sll_node_t* tail;  // pointer to the last node in the linked list
+    ds_sll_node_t* head;  /**< pointer to the first node in the linked list */
+    ds_sll_node_t* tail;  /**< pointer to the last node in the linked list */
 } ds_sll_t;
 
 
@@ -80,6 +80,7 @@ ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t *linkedList);
 void* ds_sll_extractElementFromNode(ds_sll_node_t* node);
 void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element);
 void ds_sll_deleteElement(void* node);
+void ds_sll_deleteNode(ds_sll_node_t* node);
 void* ds_sll_copyElement(void* element, const size_t element_size);
 // Operations on List
 int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int, void*), void *sharedData);
