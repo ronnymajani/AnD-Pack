@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libAnDpack.a  CMakeFiles/AnDpack.dir/Data_Structures/Linked_Lists/SinglyLinkedList.c.o
-/usr/bin/ranlib ../lib/libAnDpack.a
