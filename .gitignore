@@ -34,4 +34,7 @@
 # Project Files
 \.idea/
 
-cmake-build-debug/AnDpack_test
+# cmake output
+/cmake-build-debug/
+lib/
+/Documentation/latex/
