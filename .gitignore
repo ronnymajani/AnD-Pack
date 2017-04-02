@@ -37,6 +37,5 @@
 # cmake output
 /cmake-build-debug/
 lib/
-/Documentation/latex/
+/Documentation/
 !/Documentation/latex/refman.pdf
-/Documentation/html/
