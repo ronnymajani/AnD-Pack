@@ -1,6 +1,6 @@
-#*A*n*D* Pack#
-##*A*lgorithms and *D*ata Structures Pack##
-######A set of libraries containing as many algorithms and data structures libraries, implemented in standard C-11######
+# *A*n*D* Pack#
+## *A*lgorithms and *D*ata Structures Pack##
+###### A set of libraries containing as many algorithms and data structures libraries, implemented in standard C-11######
 
 In Progress:
 ============
