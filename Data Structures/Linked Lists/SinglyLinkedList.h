@@ -77,6 +77,7 @@ ds_sll_t* ds_sll_newSinglyLinkedList();
 ds_sll_node_t* ds_sll_createNode(void* element);
 ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t *linkedList);
 // Operations on Node
+ds_sll_node_t* ds_sll_nextNode(ds_sll_node_t* node);
 void* ds_sll_extractElementFromNode(ds_sll_node_t* node);
 void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element);
 void ds_sll_deleteElement(void* node);

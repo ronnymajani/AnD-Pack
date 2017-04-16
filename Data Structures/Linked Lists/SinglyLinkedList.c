@@ -47,9 +47,19 @@
  * + Split: Split the linked list at the given index
  * + Execute Function on Elements: Executes the given function on the element of every node
  * + Length Of: Get the length of the linked list
+ *
+ * ### Abstractions:
+ * This library was designed with some abstractions in mind to allow for easy customization according to your
+ * project's needs. These abstractions are mainly implemented as inline functions where possible.
+ * The main abstractions are:
+ * + createNode: allows you to specify how nodes are created
+ * + extractElementFromNode: allows you to specify how node elements are read (return node->element)
+ * + storeElementInNode: allows you to specify how to insert an element in a node (node->element = new_element)
+ * + deleteElement: allows you to specify how to deallocate the resources of a given Element
+ * + deleteNode: allows you to specify how a node is 'deleted' and its resources are de-allocated
+ * + copyElement: allows you to specify how an Element is copied
+ * You can alter these functions along with the node data type to suite the needs of your application
  **/
-
-// TODO: abstract (node->next) into an inline function
 
 #include "SinglyLinkedList.h"
 #include <assert.h>
@@ -123,6 +133,21 @@ ds_sll_node_t* ds_sll_createNode(void* element)
     node->element = element;
 }
 
+
+/**
+ * @brief Inline function that returns the next node in the given list
+ * @param node The node to extract the 'next node' from
+ * @return The next node located right after the given node
+ *
+ * The point of this function is to abstract the node->next operation
+ * allowing the developer to easily customize the way linked lists are traversed
+ */
+inline ds_sll_node_t* ds_sll_nextNode(ds_sll_node_t* node)
+{
+    return node->next;
+}
+
+
 /**
  * @brief Delete an element contained within a node and free any allocated resources
  * @param element The element
@@ -181,7 +206,7 @@ ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index)
 
     // Traverse the linked list `index` times or until end of list or NULL is reached
     while((curr != NULL) && (curr != linkedList->tail) && (index-- != 0)){
-        curr = curr->next;
+        curr = ds_sll_nextNode(curr);
     }
 
     // due to the short circuit nature of comparisons, if the tail was reached then index isn't decremented one last time
@@ -220,7 +245,7 @@ ds_sll_node_t* ds_sll_getNodeAtIndex(const ds_sll_t* linkedList, int index)
 
     *node = linkedList->head;
     // iterate to the node right before the node at the given index
-    for (; (*node != NULL) && (*node != linkedList->tail) && (index != 0); index--, *node = (*node)->next);
+    for (; (*node != NULL) && (*node != linkedList->tail) && (index != 0); index--, *node = ds_sll_nextNode(*node));
 
     // Error traversing to desired index
     if(*node == NULL) {
@@ -279,7 +304,7 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
             linkedList->tail = NULL;
         }
         else {
-            linkedList->head = todel->next;
+            linkedList->head = ds_sll_nextNode(todel);
             ds_sll_deleteNode(todel);
         }
         return DS_SLL_NO_ERROR;
@@ -294,21 +319,21 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
         return traverseStatus;
     }
     // Broken list
-    else if(todel->next == NULL) {
+    else if(ds_sll_nextNode(todel) == NULL) {
         return DS_SLL_BROKEN_LIST_ERROR;
     }
     // Delete tail
-    else if(todel->next == linkedList->tail) {
+    else if(ds_sll_nextNode(todel) == linkedList->tail) {
         linkedList->tail = todel; // move the tail pointer one node back (todel)
-        todel = todel->next; // move the todel pointer one node forward (the old tail)
+        todel = ds_sll_nextNode(todel); // move the todel pointer one node forward (the old tail)
         linkedList->tail->next = NULL; // unlink the old tail from the linked list chain
         ds_sll_deleteNode(todel); // delete the old tail
         return DS_SLL_NO_ERROR;
     }
     else {
         ds_sll_node_t *prev = todel; // save a pointer to the current node (the node before the node to be deleted)
-        todel = todel->next; // set todel to point to the node to be deleted
-        prev->next = todel->next; // unlink the todel node and make prev point to the next node in the list
+        todel = ds_sll_nextNode(todel); // set todel to point to the node to be deleted
+        prev->next = ds_sll_nextNode(todel); // unlink the todel node and make prev point to the next node in the list
         ds_sll_deleteNode(todel); // delete the todel node
         return DS_SLL_NO_ERROR;
     }
@@ -330,7 +355,7 @@ ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t *linkedList)
     while((linkedList->head != NULL) && (linkedList->head != linkedList->tail))
     {
         ds_sll_node_t *todel = linkedList->head;
-        linkedList->head = todel->next;
+        linkedList->head = ds_sll_nextNode(todel);
         ds_sll_deleteNode(todel);
     }
 
@@ -454,11 +479,11 @@ ds_sll_error_t ds_sll_insertNodeAtIndex(ds_sll_t* linkedList, ds_sll_node_t* nod
             linkedList->tail = node;
             return DS_SLL_NO_ERROR;
         }
-        else if (prev->next == NULL) { // desired index is NULL: list is broken
+        else if (ds_sll_nextNode(prev) == NULL) { // desired index is NULL: list is broken
             return DS_SLL_BROKEN_LIST_ERROR;
         }
         else { // desired index reached, not tail
-            node->next = prev->next;
+            node->next = ds_sll_nextNode(prev);
             prev->next = node;
             return DS_SLL_NO_ERROR;
         }
@@ -544,7 +569,7 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t 
             return -1;
         }
         // iterate to next node
-        curr = curr->next;
+        curr = ds_sll_nextNode(curr);
     }
 
     if((curr != linkedList->tail) || (func(ds_sll_extractElementFromNode(curr), index, sharedData) == 1)) {
@@ -569,7 +594,7 @@ int ds_sll_calculateLength(const ds_sll_t* linkedList)
     ds_sll_node_t* curr = linkedList->head;
 
     // Traverse the linked list `index` times or until end of list or NULL is reached
-    for(index = 0; (curr != NULL) && (curr != linkedList->tail); index++, curr = curr->next);
+    for(index = 0; (curr != NULL) && (curr != linkedList->tail); index++, curr = ds_sll_nextNode(curr));
 
     if((curr == NULL) || (curr != linkedList->tail)) { // an error occurred
         return -(index + 1);
@@ -611,13 +636,13 @@ ds_sll_error_t ds_sll_splitSinglyLinkedListAtIndex(ds_sll_t *firstLinkedList, ds
     if(traverseStatus != DS_SLL_NO_ERROR) {
         return traverseStatus;
     }
-    else if (newtail->next == NULL) {
+    else if (ds_sll_nextNode(newtail) == NULL) {
         return DS_SLL_INDEX_OUT_OF_BOUNDS_ERROR;
     }
 
     secondLinkedList->tail = firstLinkedList->tail; // set secondLinkedList tail to equal original tail
     firstLinkedList->tail = newtail; // update the firstLinkedList tail to equal the new tail where the split occurred
-    secondLinkedList->head = newtail->next; // set secondLinkedList head to equal the node after newtail
+    secondLinkedList->head = ds_sll_nextNode(newtail); // set secondLinkedList head to equal the node after newtail
     firstLinkedList->tail->next = NULL; // break the link between the two newly created linked lists
     return DS_SLL_NO_ERROR;
 }
@@ -655,11 +680,11 @@ ds_sll_error_t ds_sll_splitSinglyLinkedListAtIndex(ds_sll_t *firstLinkedList, ds
     // if we are continuing a previous search, iterate to the next node to continue our search.
     else {
         index++;
-        node = node->next;
+        node = ds_sll_nextNode(node);
     }
 
     // iterate to the node right before the node at the given index
-    for (; (node != NULL); node = node->next, index++) {
+    for (; (node != NULL); node = ds_sll_nextNode(node), index++) {
         if(equalityFunc(node->element, searchTerm) == 1) {
             if(resultIndex != NULL) { // set the resultIndex parameter if it is not NULL
                 *resultIndex = index;
