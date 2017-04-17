@@ -42,13 +42,14 @@ Implementation:
 - CMake v3.6 for compiling and organizing the build process
 - For Parallel Algorithms:
   - POSIX for multithreading implementations
-  - OpenCL v1.1+ for GPU and cross platform implementations
+  - OpenCL v1.2+ for GPU and cross platform implementations
+- For Documentation Generation: Doxygen v1.8.11
 
 Naming Conventions:
 -------------------
 All labels are suffixed according to their library's heirarchy:
 
-**ds**/**al** + **_** + *library code* + **_**
+**ds**/**al**/**pa** + **_** + *library code* + **_**
 
 example: suffix for singly linked lists **ds_sll_**
 
@@ -65,6 +66,7 @@ embedded systems and maintains a well-rounded balance between being
 an all-purpose customizable library, fast, and memory efficient where it's
 performance is suitable for your real time needs.
 
+#### Contribution
 Everyone is free to contribute as much as they want, but please, if you wish
 to contribute, try to put your best work out there. This library aims to be
  an open source industry grade solution.
