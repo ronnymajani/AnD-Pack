@@ -207,8 +207,8 @@ section.*
  + deleteNode: allows you to specify how a node is 'deleted' and its resources are de-allocated
  + copyElement: allows you to specify how an Element is copied
 
- You can alter these functions along with the node data type to suite the needs of your application
-and you can easily change the way data is being stored in the node. Maybe the void pointers being
+You can alter these functions and define your own custom functions using `ds_sll_executeFunctionOnElements`
+to suite the needs of your application and you can easily change the way data is being stored in the node. Maybe the void pointers being
 stored in the nodes are references to more complicated objects, and therefore you can modify these
 functions to perform initializations and data manipulations according to your design without
 affecting the overall linked list functionality.
