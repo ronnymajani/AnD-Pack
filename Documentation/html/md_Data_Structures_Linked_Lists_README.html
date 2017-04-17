@@ -97,7 +97,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><b>destroySinglyLinkedList</b>: Destroy a list and all its nodes</li>
 <li><b>extractElementFromNode</b>: Extract an element stored in a node</li>
 <li><b>storeElementInNode</b>: Store an element in a node</li>
+<li><b>nextNode</b>: Specifies how to get the next node following a given node</li>
 <li><b>deleteElement</b>: Delete an element in a node and free its resources</li>
+<li><b>deleteNode</b>: Delete and free resources associated with a given Node</li>
 <li><b>copyElement</b>: Create a copy of a given element</li>
 <li><b>executeFunctionOnElements</b>: Execute a given function on all the nodes in the list</li>
 <li><b>calculateLength</b>: Calculates the length of the linked list</li>
@@ -114,7 +116,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><b>deleteNodeAtIndex</b>: Delete the node located at the given index, and free allocated resources.</li>
 <li><b>traverseNodeToIndex</b>: A helper function that traverses a linked list and sets the given pointer to point to the node at the given index. It also returns an error code detailing what kind of error occurred.</li>
 </ul>
-<p>I have abstracted the functions <em>storeElementInNode</em>, <em>deleteElement</em>, and <em>copyElement</em> so you can easily change the way data is being stored in the node. Maybe the void pointers being stored in the nodes are references to more complicated objects, and therefore you can modify these functions to perform initializations and data manipulations according to your design without affecting the overall linked list functionality. </p>
+<h4>Abstractions:</h4>
+<p>This library was designed with some abstractions in mind to allow for easy customization according to your project's needs. These abstractions are mainly implemented as inline functions where possible. The main abstractions are:</p><ul>
+<li>createNode: allows you to specify how nodes are created</li>
+<li>extractElementFromNode: allows you to specify how node elements are read (return node-&gt;element)</li>
+<li>storeElementInNode: allows you to specify how to insert an element in a node (node-&gt;element = new_element)</li>
+<li>deleteElement: allows you to specify how to deallocate the resources of a given Element</li>
+<li>deleteNode: allows you to specify how a node is 'deleted' and its resources are de-allocated</li>
+<li>copyElement: allows you to specify how an Element is copied</li>
+</ul>
+<p>You can alter these functions along with the node data type to suite the needs of your application and you can easily change the way data is being stored in the node. Maybe the void pointers being stored in the nodes are references to more complicated objects, and therefore you can modify these functions to perform initializations and data manipulations according to your design without affecting the overall linked list functionality. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

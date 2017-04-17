@@ -2,8 +2,9 @@
 ## *A*lgorithms and *D*ata Structures Pack##
 ###### A set of libraries containing as many algorithms and data structures libraries, implemented in standard C-11######
 
-In Progress:
-============
+
+Completed:
+==========
 Data Structures (code: ds):
 ----------------
 - [**Singly Linked Lists (code: sll):**](./Data%20Structures/Linked%20Lists)
@@ -11,6 +12,19 @@ a versatile library containing many functions that allow you to use and manipula
 singly linked lists. The code was written with certain abstractions in mind,
 that allow easy modification of the to adapt the library's functionality 
 to your requirements and design.
+
+Algorithms (code: al):
+----------------------
+
+
+------------------------------
+
+
+In Progress:
+============
+Data Structures (code: ds):
+----------------
+
 
 Algorithms (code: al):
 ----------------------

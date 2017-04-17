@@ -147,6 +147,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga7cfb95dcdc06404b60831fcba0039030"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__singlylinkedlist.html#gab349520e0dd03f757156e0bf5bce5a33">ds_sll_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__singlylinkedlist.html#ga7cfb95dcdc06404b60831fcba0039030">ds_sll_destroySinglyLinkedList</a> (<a class="el" href="structds__sll__t.html">ds_sll_t</a> *linkedList)</td></tr>
 <tr class="memdesc:ga7cfb95dcdc06404b60831fcba0039030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy a Singly Linked List.  <a href="#ga7cfb95dcdc06404b60831fcba0039030">More...</a><br /></td></tr>
 <tr class="separator:ga7cfb95dcdc06404b60831fcba0039030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b1faaa4fbf708e7b55caa2fa2bab61d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__singlylinkedlist.html#ga9b1faaa4fbf708e7b55caa2fa2bab61d">ds_sll_nextNode</a> (<a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a> *node)</td></tr>
+<tr class="memdesc:ga9b1faaa4fbf708e7b55caa2fa2bab61d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inline function that returns the next node in the given list.  <a href="#ga9b1faaa4fbf708e7b55caa2fa2bab61d">More...</a><br /></td></tr>
+<tr class="separator:ga9b1faaa4fbf708e7b55caa2fa2bab61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad2eb4f5595a27efe034d071fa0cc139a"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__singlylinkedlist.html#gad2eb4f5595a27efe034d071fa0cc139a">ds_sll_extractElementFromNode</a> (<a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a> *node)</td></tr>
 <tr class="memdesc:gad2eb4f5595a27efe034d071fa0cc139a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the element contained in the given node.  <a href="#gad2eb4f5595a27efe034d071fa0cc139a">More...</a><br /></td></tr>
 <tr class="separator:gad2eb4f5595a27efe034d071fa0cc139a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1007,6 +1010,40 @@ Functions</h2></td></tr>
 
 <p>Create a new singly linked list. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to a new Singly Linked List struct (linked list header) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga9b1faaa4fbf708e7b55caa2fa2bab61d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a>* ds_sll_nextNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inline function that returns the next node in the given list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The node to extract the 'next node' from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The next node located right after the given node</dd></dl>
+<p>The point of this function is to abstract the node-&gt;next operation allowing the developer to easily customize the way linked lists are traversed </p>
 
 </div>
 </div>
