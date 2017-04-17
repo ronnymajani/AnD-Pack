@@ -24,7 +24,7 @@ The linked list is represented by a header, that keeps track of the **head** and
 
 Available Functions:
 --------------------
-(I ommitted the function suffix *ds_sll_* in this text for clarity)
+*(I ommitted the function suffix *ds_sll_* in this text for clarity)*
 ###### Create/Delete
 - **newSinglyLinkedList**: Create a new header
 - **createNode**: Create a new node
