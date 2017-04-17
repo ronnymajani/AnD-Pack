@@ -553,7 +553,7 @@ ds_sll_error_t ds_sll_insertElementCopyAtIndex(ds_sll_t* linkedList, void* eleme
  * Your given function will be called on each node in sequence (starting from the head) until the tail or until one of the function calls
  * returns DS_SLL_STOP_EXECUTION or DS_SLL_FUNCTION_EXECUTION_ERROR
  */
-int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, int, void*), void *sharedData)
+int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, ds_sll_node_t*, int, void*), void *sharedData)
 {
     ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
@@ -562,7 +562,7 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t 
 
     // Traverse the linked list `index` times or until end of list or NULL is reached
     for(index = 0; curr != linkedList->tail; index++){
-        ds_sll_func_return_t returncode = func(ds_sll_extractElementFromNode(curr), index, sharedData);
+        ds_sll_func_return_t returncode = func(ds_sll_extractElementFromNode(curr), curr, index, sharedData);
         if((curr == NULL) || (returncode == DS_SLL_EXECUTION_ERROR)) { // an error occurred!
             return index;
         } else if(returncode == DS_SLL_STOP_EXECUTION) {
@@ -572,7 +572,7 @@ int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t 
         curr = ds_sll_nextNode(curr);
     }
 
-    if((curr != linkedList->tail) || (func(ds_sll_extractElementFromNode(curr), index, sharedData) == 1)) {
+    if((curr != linkedList->tail) || (func(ds_sll_extractElementFromNode(curr), curr, index, sharedData) == 1)) {
         return index;
     }
 

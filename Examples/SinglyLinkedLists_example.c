@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "Data Structures/Linked Lists/SinglyLinkedList.h"
 
-ds_sll_func_return_t printElement(void* element, int index, void* extra) {
+ds_sll_func_return_t printElement(void* element,  ds_sll_node_t* node, int index, void* extra) {
     printf("%d >> %d\n", index, *((int*)element));
     return DS_SLL_CONTINUE_EXECUTION;
 }
