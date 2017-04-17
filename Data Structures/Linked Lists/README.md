@@ -24,41 +24,40 @@ The linked list is represented by a header, that keeps track of the **head** and
 
 Available Functions:
 --------------------
-*(I ommitted the function suffix *ds_sll_* in this text for clarity)*
 ###### Create/Delete
-- **newSinglyLinkedList**: Create a new header
-- **createNode**: Create a new node
-- **destroySinglyLinkedList**: Destroy a list and all its nodes
-- **deleteNode**: Delete and free resources associated with a given Node
-- **deleteNodeAtIndex**: Delete the node located at the given index, and free allocated resources.
+- **ds_sll_newSinglyLinkedList**: Create a new header
+- **ds_sll_createNode**: Create a new node
+- **ds_sll_destroySinglyLinkedList**: Destroy a list and all its nodes
+- **ds_sll_deleteNode**: Delete and free resources associated with a given Node
+- **ds_sll_deleteNodeAtIndex**: Delete the node located at the given index, and free allocated resources.
 ###### Operations on Node:
-- **nextNode**: Specifies how to get the next node following a given node
-- **extractElementFromNode**: Extract an element stored in a node
-- **storeElementInNode**: Store an element in a node
-- **deleteElement**: Delete an element in a node and free its resources
-- **copyElement**: Create a copy of a given element
+- **ds_sll_nextNode**: Specifies how to get the next node following a given node
+- **ds_sll_extractElementFromNode**: Extract an element stored in a node
+- **ds_sll_storeElementInNode**: Store an element in a node
+- **ds_sll_deleteElement**: Delete an element in a node and free its resources
+- **ds_sll_copyElement**: Create a copy of a given element
 ###### Operations on List:
-- **executeFunctionOnElements**: Execute a given function on all the nodes in the list
-- **calculateLength**: Calculates the length of the linked list
-- **splitSinglyLinkedListAtIndex**: Splits a linked list into two at the given index
+- **ds_sll_executeFunctionOnElements**: Execute a given function on all the nodes in the list
+- **ds_sll_calculateLength**: Calculates the length of the linked list
+- **ds_sll_splitSinglyLinkedListAtIndex**: Splits a linked list into two at the given index
 ###### Retrieval and Search:
-- **getNodeAtIndex**: Retrieve the node at the given index
-- **getElementAtIndex**: Retrieve the element in the node at the given index
-- **findNodeContainingElement**: Searches the linked list for the node containing the given element
+- **ds_sll_getNodeAtIndex**: Retrieve the node at the given index
+- **ds_sll_getElementAtIndex**: Retrieve the element in the node at the given index
+- **ds_sll_findNodeContainingElement**: Searches the linked list for the node containing the given element
 ###### Append:
-- **appendNode**: Append a node to the end of the list
-- **appendElement**: Create a new node and store the given element in it and append the node to
+- **ds_sll_appendNode**: Append a node to the end of the list
+- **ds_sll_appendElement**: Create a new node and store the given element in it and append the node to
 the end of the list
-- **appendElementCopy**: Create a new node and store a copy of the given element in it and appen
+- **ds_sll_appendElementCopy**: Create a new node and store a copy of the given element in it and appen
 the node to the end of the list
 ###### Insert:
-- **insertNodeAtIndex**: Insert a node at the given index
-- **insertElementAtIndex**: Create a new node and store the given element and insert the new node
+- **ds_sll_insertNodeAtIndex**: Insert a node at the given index
+- **ds_sll_insertElementAtIndex**: Create a new node and store the given element and insert the new node
 at the given index in the list.
-- **insertElementCopyAtIndex**: Create a new node and store a copy of the given element and insert
+- **ds_sll_insertElementCopyAtIndex**: Create a new node and store a copy of the given element and insert
 the new node at the given index in the list.
 ###### Helper Functions:
-- **traverseNodeToIndex**: A helper function that traverses a linked list and sets the given pointer
+- **ds_sll_traverseNodeToIndex**: A helper function that traverses a linked list and sets the given pointer
 to point to the node at the given index. It also returns an error code detailing what kind of error occurred.
 
 
@@ -200,12 +199,12 @@ section.*
  This library was designed with some abstractions in mind to allow for easy customization according to your
  project's needs. These abstractions are mainly implemented as inline functions where possible.
  The main abstractions are:
- + createNode: allows you to specify how nodes are created
- + extractElementFromNode: allows you to specify how node elements are read (return node->element)
- + storeElementInNode: allows you to specify how to insert an element in a node (node->element = new_element)
- + deleteElement: allows you to specify how to deallocate the resources of a given Element
- + deleteNode: allows you to specify how a node is 'deleted' and its resources are de-allocated
- + copyElement: allows you to specify how an Element is copied
+ + **ds_sll_createNode**: allows you to specify how nodes are created
+ + **ds_sll_extractElementFromNode**: allows you to specify how node elements are read (return node->element)
+ + **ds_sll_storeElementInNode**: allows you to specify how to insert an element in a node (node->element = new_element)
+ + **ds_sll_deleteElement**: allows you to specify how to deallocate the resources of a given Element
+ + **ds_sll_deleteNode**: allows you to specify how a node is 'deleted' and its resources are de-allocated
+ + **ds_sll_copyElement**: allows you to specify how an Element is copied
 
 You can alter these functions and define your own custom functions using `ds_sll_executeFunctionOnElements`
 to suite the needs of your application and you can easily change the way data is being stored in the node. Maybe the void pointers being

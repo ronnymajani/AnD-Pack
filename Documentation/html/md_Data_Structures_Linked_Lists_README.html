@@ -92,49 +92,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><b>Overview:</b></p>
 <p>The linked list is represented by a header, that keeps track of the <b>head</b> and the <b>tail</b>. The linked list consists of <b>nodes</b>. Each node has a reference to the <b>next node</b>. Each node also stores one <b>void pointer</b> that we call an <b>element</b>. This pointer is generic and can be used anyway you see fit. The simplest example is it could be a pointer to a primitive data type allocated in memory, and when you access this data you simply typecast the pointer to the appropriate type and then dereference it as you would any normal pointer. For the more advanced applications out there this pointer could reference more complicated objects or be used for more complex representations. To accommodate for the wide possiblities I aimed to abstract the library to manageable and easily customizable chunks.</p>
 <h2>Available Functions: </h2>
-<p>(I ommitted the function suffix <em>ds_sll_</em> in this text for clarity) </p><h6>Create/Delete</h6>
+<h6>Create/Delete</h6>
 <ul>
-<li><b>newSinglyLinkedList</b>: Create a new header</li>
-<li><b>createNode</b>: Create a new node</li>
-<li><b>destroySinglyLinkedList</b>: Destroy a list and all its nodes</li>
-<li><b>deleteNode</b>: Delete and free resources associated with a given Node</li>
-<li><b>deleteNodeAtIndex</b>: Delete the node located at the given index, and free allocated resources. <h6>Operations on Node:</h6>
+<li><b>ds_sll_newSinglyLinkedList</b>: Create a new header</li>
+<li><b>ds_sll_createNode</b>: Create a new node</li>
+<li><b>ds_sll_destroySinglyLinkedList</b>: Destroy a list and all its nodes</li>
+<li><b>ds_sll_deleteNode</b>: Delete and free resources associated with a given Node</li>
+<li><b>ds_sll_deleteNodeAtIndex</b>: Delete the node located at the given index, and free allocated resources. <h6>Operations on Node:</h6>
 </li>
 </ul>
 <ul>
-<li><b>nextNode</b>: Specifies how to get the next node following a given node</li>
-<li><b>extractElementFromNode</b>: Extract an element stored in a node</li>
-<li><b>storeElementInNode</b>: Store an element in a node</li>
-<li><b>deleteElement</b>: Delete an element in a node and free its resources</li>
-<li><b>copyElement</b>: Create a copy of a given element <h6>Operations on List:</h6>
+<li><b>ds_sll_nextNode</b>: Specifies how to get the next node following a given node</li>
+<li><b>ds_sll_extractElementFromNode</b>: Extract an element stored in a node</li>
+<li><b>ds_sll_storeElementInNode</b>: Store an element in a node</li>
+<li><b>ds_sll_deleteElement</b>: Delete an element in a node and free its resources</li>
+<li><b>ds_sll_copyElement</b>: Create a copy of a given element <h6>Operations on List:</h6>
 </li>
 </ul>
 <ul>
-<li><b>executeFunctionOnElements</b>: Execute a given function on all the nodes in the list</li>
-<li><b>calculateLength</b>: Calculates the length of the linked list</li>
-<li><b>splitSinglyLinkedListAtIndex</b>: Splits a linked list into two at the given index <h6>Retrieval and Search:</h6>
+<li><b>ds_sll_executeFunctionOnElements</b>: Execute a given function on all the nodes in the list</li>
+<li><b>ds_sll_calculateLength</b>: Calculates the length of the linked list</li>
+<li><b>ds_sll_splitSinglyLinkedListAtIndex</b>: Splits a linked list into two at the given index <h6>Retrieval and Search:</h6>
 </li>
 </ul>
 <ul>
-<li><b>getNodeAtIndex</b>: Retrieve the node at the given index</li>
-<li><b>getElementAtIndex</b>: Retrieve the element in the node at the given index</li>
-<li><b>findNodeContainingElement</b>: Searches the linked list for the node containing the given element <h6>Append:</h6>
+<li><b>ds_sll_getNodeAtIndex</b>: Retrieve the node at the given index</li>
+<li><b>ds_sll_getElementAtIndex</b>: Retrieve the element in the node at the given index</li>
+<li><b>ds_sll_findNodeContainingElement</b>: Searches the linked list for the node containing the given element <h6>Append:</h6>
 </li>
 </ul>
 <ul>
-<li><b>appendNode</b>: Append a node to the end of the list</li>
-<li><b>appendElement</b>: Create a new node and store the given element in it and append the node to the end of the list</li>
-<li><b>appendElementCopy</b>: Create a new node and store a copy of the given element in it and appen the node to the end of the list <h6>Insert:</h6>
+<li><b>ds_sll_appendNode</b>: Append a node to the end of the list</li>
+<li><b>ds_sll_appendElement</b>: Create a new node and store the given element in it and append the node to the end of the list</li>
+<li><b>ds_sll_appendElementCopy</b>: Create a new node and store a copy of the given element in it and appen the node to the end of the list <h6>Insert:</h6>
 </li>
 </ul>
 <ul>
-<li><b>insertNodeAtIndex</b>: Insert a node at the given index</li>
-<li><b>insertElementAtIndex</b>: Create a new node and store the given element and insert the new node at the given index in the list.</li>
-<li><b>insertElementCopyAtIndex</b>: Create a new node and store a copy of the given element and insert the new node at the given index in the list. <h6>Helper Functions:</h6>
+<li><b>ds_sll_insertNodeAtIndex</b>: Insert a node at the given index</li>
+<li><b>ds_sll_insertElementAtIndex</b>: Create a new node and store the given element and insert the new node at the given index in the list.</li>
+<li><b>ds_sll_insertElementCopyAtIndex</b>: Create a new node and store a copy of the given element and insert the new node at the given index in the list. <h6>Helper Functions:</h6>
 </li>
 </ul>
 <ul>
-<li><b>traverseNodeToIndex</b>: A helper function that traverses a linked list and sets the given pointer to point to the node at the given index. It also returns an error code detailing what kind of error occurred.</li>
+<li><b>ds_sll_traverseNodeToIndex</b>: A helper function that traverses a linked list and sets the given pointer to point to the node at the given index. It also returns an error code detailing what kind of error occurred.</li>
 </ul>
 <h4>executeFunctionOnElements:</h4>
 <p>This function allows you to execute a given function on the entire linked list in sequential order. This function takes an <em>executable function</em>, traverses the given linked list, and calls the given <em>executable function</em> on each node. This traversal is sequential and can be controlled via the return parameter of the <em>executable function</em>'s. The way to use is by defining a function in the form: </p><div class="fragment"><div class="line"><a class="code" href="group__singlylinkedlist.html#ga47cf7d7c5e96492d21832f6444c1bf8a">ds_sll_func_return_t</a> myfunction(<span class="keywordtype">void</span>* element, <a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>* node, <span class="keywordtype">int</span> index, <span class="keywordtype">void</span>* shared) {</div><div class="line">    <a class="code" href="group__singlylinkedlist.html#ga47cf7d7c5e96492d21832f6444c1bf8a">ds_sll_func_return_t</a> execution_status;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    rerturn execution_status;</div><div class="line">}</div></div><!-- fragment --><p> Where obviously you can name the function anything you like. The first parameter <code>void* element</code> is a pointer to the element within the current node that <code>ds_sll_executeFunctionOnElements(...)</code> is processing. The second parameter <code>ds_sll_node_t* node</code> is a pointer to the node the function was called on The third parameter <code>int index</code> is the index of the node that this function was called on. The fourth parameter <code>void* shared</code> is used for three reasons:</p><ul>
@@ -149,14 +149,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><em>So as a general guideline, to easily customize the library, stick to modifying the library functions, mainly those mentioned below in the <b>Abstractions</b> section.</em></p>
 <h4>Abstractions:</h4>
 <p>This library was designed with some abstractions in mind to allow for easy customization according to your project's needs. These abstractions are mainly implemented as inline functions where possible. The main abstractions are:</p><ul>
-<li>createNode: allows you to specify how nodes are created</li>
-<li>extractElementFromNode: allows you to specify how node elements are read (return node-&gt;element)</li>
-<li>storeElementInNode: allows you to specify how to insert an element in a node (node-&gt;element = new_element)</li>
-<li>deleteElement: allows you to specify how to deallocate the resources of a given Element</li>
-<li>deleteNode: allows you to specify how a node is 'deleted' and its resources are de-allocated</li>
-<li>copyElement: allows you to specify how an Element is copied</li>
+<li><b>ds_sll_createNode</b>: allows you to specify how nodes are created</li>
+<li><b>ds_sll_extractElementFromNode</b>: allows you to specify how node elements are read (return node-&gt;element)</li>
+<li><b>ds_sll_storeElementInNode</b>: allows you to specify how to insert an element in a node (node-&gt;element = new_element)</li>
+<li><b>ds_sll_deleteElement</b>: allows you to specify how to deallocate the resources of a given Element</li>
+<li><b>ds_sll_deleteNode</b>: allows you to specify how a node is 'deleted' and its resources are de-allocated</li>
+<li><b>ds_sll_copyElement</b>: allows you to specify how an Element is copied</li>
 </ul>
-<p>You can alter these functions along with the node data type to suite the needs of your application and you can easily change the way data is being stored in the node. Maybe the void pointers being stored in the nodes are references to more complicated objects, and therefore you can modify these functions to perform initializations and data manipulations according to your design without affecting the overall linked list functionality. </p>
+<p>You can alter these functions and define your own custom functions using <code>ds_sll_executeFunctionOnElements</code> to suite the needs of your application and you can easily change the way data is being stored in the node. Maybe the void pointers being stored in the nodes are references to more complicated objects, and therefore you can modify these functions to perform initializations and data manipulations according to your design without affecting the overall linked list functionality. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
