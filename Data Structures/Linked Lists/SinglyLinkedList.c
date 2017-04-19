@@ -19,7 +19,7 @@
  * the tail to point to the correct node, which in this case is the tail of list A. An alternative is to use the combine function
  * which deals with the nuisance of correcting the tail pointers appropriately. Also there are plans to implement a headless
  * linked list (a linked list that does not keep track of the head and tail but simply uses any given node to traverse)
- * in the future which allows much more flexibility but at the expense of not noing whether or not the list is broken or corrupt.
+ * in the future which allows much more flexibility but at the expense of not knowing whether or not the list is broken or corrupt.
  *
  * ###Note:
  * I follow DbC (Design by Contract) with my code, meaning functions that
