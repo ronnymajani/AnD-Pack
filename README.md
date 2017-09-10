@@ -16,7 +16,7 @@ root directory of this project
 Implementation:
 ---------------
 - C Language following the C-11 Standard
-- CMake v3.6 for compiling and organizing the build process
+- CMake v3.2.2 for compiling and organizing the build process
 - For Documentation Generation: Doxygen v1.8.11
 
 Naming Conventions:
