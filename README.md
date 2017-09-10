@@ -1,5 +1,5 @@
-Singly Linked Lists:
-====================
+Singly Linked Lists [![Build Status](https://travis-ci.org/ronnymajani/RM-Linked-List.svg?branch=master)](https://travis-ci.org/ronnymajani/RM-Linked-List):
+=====================
 A versatile library containing many functions that allow you to use and manipulate
 singly linked lists. The code was written with certain abstractions in mind,
 that allow easy modification of the to adapt the library's functionality 
