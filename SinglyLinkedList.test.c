@@ -153,6 +153,9 @@ int main() {
     ds_sll_destroySinglyLinkedList(mylist);
     ds_sll_destroySinglyLinkedList(newlist);
 
+    free(mylist);
+    free(newlist);
+
     printf("Hello, World!\n");
     return 0;
 }

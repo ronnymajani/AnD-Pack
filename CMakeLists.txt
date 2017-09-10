@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-project(AnDpack)
+project(RM-Linked-List)
 
 set(CMAKE_C_STANDARD 11)
 
