@@ -11,7 +11,7 @@ that allow easy modification of the to adapt the library's functionality
 Documentation:
 --------------
 To generate the Documentation, just run the `doxygen` command in the
-root directory of this porject
+root directory of this project
 
 Implementation:
 ---------------
