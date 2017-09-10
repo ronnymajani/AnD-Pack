@@ -25,7 +25,7 @@ SOFTWARE.
 /**
  * @ingroup singlylinkedlist
  * @file SinglyLinkedList.c
- * @brief AnD >> Singly Linked List library (ds_sll)
+ * @brief Singly Linked List library (ds_sll)
  *
  * Category: Data Structures >> Linked Lists
  * Codename: ds_sll

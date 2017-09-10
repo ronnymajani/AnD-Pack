@@ -23,8 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-#ifndef AND_PACK_SINGLYLINKEDLIST_H
-#define AND_PACK_SINGLYLINKEDLIST_H
+#ifndef RM_DS_SLL_SINGLYLINKEDLIST_H
+#define RM_DS_SLL_SINGLYLINKEDLIST_H
 
 #include <stdlib.h>
 
@@ -36,7 +36,7 @@ SOFTWARE.
 
 /**
  * @file SinglyLinkedList.h
- * @brief AnD >> Singly Linked List library (Header) (ds_sll)
+ * @brief Singly Linked List library (Header) (ds_sll)
  *
  * Category: Data Structures >> Linked Lists >> Singly Linked List
  * Codename: ds_sll
@@ -47,7 +47,7 @@ SOFTWARE.
  *
  **/
 
-/* Datatype definitons */
+/* Datatype definitions */
 /**
  * Singly Linked List Node datatype
  */
@@ -132,4 +132,4 @@ ds_sll_error_t ds_sll_traverseNodeToIndex(const ds_sll_t* linkedList, ds_sll_nod
  * @}
  */
 
-#endif //AND_PACK_SINGLYLINKEDLIST_H
+#endif //RM_DS_SLL_SINGLYLINKEDLIST_H

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>AnD (Algorithms and Data Structures) Pack: *A*n*D* Pack</title>
+<title>RM Linked List: Singly Linked Lists:</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AnD (Algorithms and Data Structures) Pack
+   <div id="projectname">RM Linked List
+   &#160;<span id="projectnumber">v1.2</span>
    </div>
-   <div id="projectbrief">Asetoflibrariescontainingasmanyalgorithmsanddatastructureslibraries,implementedinstandardC-11</div>
+   <div id="projectbrief">A straight forward, versatile, easily modifiable, Linked List library, implemented in standard C-11</div>
   </td>
  </tr>
  </tbody>
@@ -39,9 +40,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -78,86 +78,98 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">*A*n*D* Pack </div>  </div>
+<div class="title">Singly Linked Lists: </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2>*A*lgorithms and *D*ata Structures Pack</h2>
-<h6>A set of libraries containing as many algorithms and data structures libraries, implemented in standard C-11</h6>
-<hr/>
-<h1>Completed: </h1>
-<h2>Data Structures (code: ds): </h2>
-<ul>
-<li><a href="./Data%20Structures/Linked%20Lists"><b>Singly Linked Lists (code: sll):</b></a> a versatile library containing many functions that allow you to use and manipulate singly linked lists. The code was written with certain abstractions in mind, that allow easy modification of the to adapt the library's functionality to your requirements and design.</li>
-</ul>
-<h2>Algorithms (code: al): </h2>
-<hr/>
-<h1>In Progress: </h1>
-<h2>Data Structures (code: ds): </h2>
-<h2>Algorithms (code: al): </h2>
-<hr/>
-<h1>Notes: </h1>
+<div class="textblock"><p>A versatile library containing many functions that allow you to use and manipulate singly linked lists. The code was written with certain abstractions in mind, that allow easy modification of the to adapt the library's functionality</p>
+<blockquote class="doxtable">
+<p><em>Note: The Singly Linked Lists library used to be part of a collection of Algorithms and Data Structures (AnD Pack) that I was working on, until I decided to split it off into a separate repository</em> </p>
+</blockquote>
 <h2>Implementation: </h2>
 <ul>
 <li>C Language following the C-11 Standard</li>
 <li>CMake v3.6 for compiling and organizing the build process</li>
-<li>For Parallel Algorithms:<ul>
-<li>POSIX for multithreading implementations</li>
-<li>OpenCL v1.2+ for GPU and cross platform implementations</li>
-</ul>
-</li>
 <li>For Documentation Generation: Doxygen v1.8.11</li>
 </ul>
 <h2>Naming Conventions: </h2>
-<p>All labels are suffixed according to their library's heirarchy:</p>
-<p><b>ds</b>/**al**/**pa** + **_** + <em>library code</em> + **_**</p>
-<p>example: suffix for singly linked lists <b>ds_sll_</b></p>
+<p>All labels are suffixed with <b>ds_sll_</b></p>
 <p>example function: <b>ds_sll_createNode(*...*)</b></p>
 <p>example typedef: <b><a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a></b></p>
-<h2>Project Vision: </h2>
-<p>My goal is to provide a versatile, flexible, customizable set of libraries to make everyone's job easier. I want this set to be reliable that it can confidently be used with embedded systems and maintains a well-rounded balance between being an all-purpose customizable library, fast, and memory efficient where it's performance is suitable for your real time needs.</p>
-<h4>Contribution</h4>
-<p>Everyone is free to contribute as much as they want, but please, if you wish to contribute, try to put your best work out there. This library aims to be an open source industry grade solution. Which means we need to keep the aforementioned characterstics in mind while developing this project.</p>
-<hr/>
-<h1>Plan: </h1>
-<h2>Data Structures (code: ds): </h2>
+<h2>Data Types: </h2>
 <ul>
-<li><b>Headless Linked Lists</b></li>
-<li><b>Doubly Linked Lists</b></li>
-<li><b>Circular Singly Linked Lists</b></li>
-<li><b>Circular Doubly Linked Lists</b></li>
-<li><b>Headless Circular Linked Lists</b></li>
-<li><b>Trees</b></li>
-<li><b>Hash Tables</b></li>
-<li><b>Array Lists</b></li>
+<li>Linked List Header: <b><a class="el" href="structds__sll__t.html">ds_sll_t</a></b></li>
+<li>Node: <b><a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a></b></li>
+<li>Error Codes: <b>ds_sll_error_t</b></li>
+<li>Executable Function Return Type: <b>ds_sll_func_return_t</b></li>
 </ul>
-<h2>Algorithms (code: al): </h2>
+<h2>Overview: </h2>
+<p>The linked list is represented by a header, that keeps track of the <b>head</b> and the <b>tail</b>. The linked list consists of <b>nodes</b>. Each node has a reference to the <b>next node</b>. Each node also stores one <b>void pointer</b> that we call an <b>element</b>. This pointer is generic and can be used anyway you see fit. The simplest example is it could be a pointer to a primitive data type allocated in memory, and when you access this data you simply typecast the pointer to the appropriate type and then dereference it as you would any normal pointer. For the more advanced applications out there this pointer could reference more complicated objects or be used for more complex representations. To accommodate for the wide possiblities I aimed to abstract the library to manageable and easily customizable chunks.</p>
+<h2>Available Functions: </h2>
+<h6>Create/Delete</h6>
 <ul>
-<li><b>Search</b><ul>
-<li>Binary Search</li>
-<li>Iterative Search</li>
+<li><b>ds_sll_newSinglyLinkedList</b>: Create a new header</li>
+<li><b>ds_sll_createNode</b>: Create a new node</li>
+<li><b>ds_sll_destroySinglyLinkedList</b>: Destroy a list and all its nodes</li>
+<li><b>ds_sll_deleteNode</b>: Delete and free resources associated with a given Node</li>
+<li><b>ds_sll_deleteNodeAtIndex</b>: Delete the node located at the given index, and free allocated resources.</li>
 </ul>
-</li>
-<li><b>Sort</b><ul>
-<li>Binary Sort</li>
-<li>Bubble Sort</li>
-<li>Quick Sort</li>
-<li>Merge Sort</li>
-<li>Shell sort</li>
+<h6>Operations on Node:</h6>
+<ul>
+<li><b>ds_sll_nextNode</b>: Specifies how to get the next node following a given node</li>
+<li><b>ds_sll_extractElementFromNode</b>: Extract an element stored in a node</li>
+<li><b>ds_sll_storeElementInNode</b>: Store an element in a node</li>
+<li><b>ds_sll_deleteElement</b>: Delete an element in a node and free its resources</li>
+<li><b>ds_sll_copyElement</b>: Create a copy of a given element</li>
 </ul>
-</li>
-<li><b>Graph Search</b><ul>
-<li>BFS</li>
-<li>DFS</li>
+<h6>Operations on List:</h6>
+<ul>
+<li><b>ds_sll_executeFunctionOnElements</b>: Execute a given function on all the nodes in the list</li>
+<li><b>ds_sll_calculateLength</b>: Calculates the length of the linked list</li>
+<li><b>ds_sll_splitSinglyLinkedListAtIndex</b>: Splits a linked list into two at the given index</li>
 </ul>
-</li>
-<li><b>Shortest Path</b><ul>
-<li>Djikstra's</li>
-<li>Bellman Ford's</li>
+<h6>Retrieval and Search:</h6>
+<ul>
+<li><b>ds_sll_getNodeAtIndex</b>: Retrieve the node at the given index</li>
+<li><b>ds_sll_getElementAtIndex</b>: Retrieve the element in the node at the given index</li>
+<li><b>ds_sll_findNodeContainingElement</b>: Searches the linked list for the node containing the given element</li>
 </ul>
-</li>
+<h6>Append:</h6>
+<ul>
+<li><b>ds_sll_appendNode</b>: Append a node to the end of the list</li>
+<li><b>ds_sll_appendElement</b>: Create a new node and store the given element in it and append the node to the end of the list</li>
+<li><b>ds_sll_appendElementCopy</b>: Create a new node and store a copy of the given element in it and appen the node to the end of the list</li>
 </ul>
-<h2>Parallel Algorithms (code: pa): </h2>
-<p>I also plan on implementing some parallel search algorithms. I plan on providing two implementations for each algorithm, one using POSIX multithreading, and the other using OpenCL. </p>
+<h6>Insert:</h6>
+<ul>
+<li><b>ds_sll_insertNodeAtIndex</b>: Insert a node at the given index</li>
+<li><b>ds_sll_insertElementAtIndex</b>: Create a new node and store the given element and insert the new node at the given index in the list.</li>
+<li><b>ds_sll_insertElementCopyAtIndex</b>: Create a new node and store a copy of the given element and insert the new node at the given index in the list.</li>
+</ul>
+<h6>Helper Functions:</h6>
+<ul>
+<li><b>ds_sll_traverseNodeToIndex</b>: A helper function that traverses a linked list and sets the given pointer to point to the node at the given index. It also returns an error code detailing what kind of error occurred.</li>
+</ul>
+<h4>executeFunctionOnElements:</h4>
+<p>This function allows you to execute a given function on the entire linked list in sequential order. This function takes an <em>executable function</em>, traverses the given linked list, and calls the given <em>executable function</em> on each node. This traversal is sequential and can be controlled via the return parameter of the <em>executable function</em>'s. The way to use is by defining a function in the form: </p><div class="fragment"><div class="line"><a class="code" href="group__singlylinkedlist.html#ga47cf7d7c5e96492d21832f6444c1bf8a">ds_sll_func_return_t</a> myfunction(<span class="keywordtype">void</span>* element, <a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>* node, <span class="keywordtype">int</span> index, <span class="keywordtype">void</span>* shared) {</div><div class="line">    <a class="code" href="group__singlylinkedlist.html#ga47cf7d7c5e96492d21832f6444c1bf8a">ds_sll_func_return_t</a> execution_status;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    rerturn execution_status;</div><div class="line">}</div></div><!-- fragment --><p> Where obviously you can name the function anything you like. The first parameter <code>void* element</code> is a pointer to the element within the current node that <code>ds_sll_executeFunctionOnElements(...)</code> is processing. The second parameter <code>ds_sll_node_t* node</code> is a pointer to the node the function was called on The third parameter <code>int index</code> is the index of the node that this function was called on. The fourth parameter <code>void* shared</code> is used for three reasons:</p><ul>
+<li>to allow your function to return some value back to you</li>
+<li>to share information between subsequent function calls</li>
+<li>to pass an initial input value to your functions The drawback is that you can only have one value to use for input, data sharing, and output. The return value of the function is used to control the execution flow, meaning it tells the <code>ds_sll_executeFunctionOnElements(...)</code> function whether:</li>
+<li>the function call to <code>myfunction(...)</code> was successful: continue to execute <code>myfunction(...)</code> on next node</li>
+<li>the function call to <code>myfunction(...)</code> ran into an error: do not continue executing the function on the next node, and return an appropriate error value back to the caller of <code>ds_sll_executeFunctionOnElements(...)</code></li>
+<li>the function ran successfully and would like to terminate: Used when your function is looking for a specific element and once it is found, there is no point in continuing to traverse the linked list therefore your function should request to terminate execution.</li>
+</ul>
+<p>An example usage of <code>ds_sll_executeFunctionOnElements(...)</code> is a function that finds the maximum element in the linked list. The functions definitions is: </p><div class="fragment"><div class="line"><span class="comment">/* Stores the maximum int in `maxElement` */</span></div><div class="line"><a class="code" href="group__singlylinkedlist.html#ga47cf7d7c5e96492d21832f6444c1bf8a">ds_sll_func_return_t</a> getMaxElement(<span class="keywordtype">void</span>* element, <a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>* node, <span class="keywordtype">int</span> index, <span class="keywordtype">void</span>* maxElement) {</div><div class="line">    <span class="keywordflow">if</span>(element == NULL) {</div><div class="line">        <span class="keywordflow">return</span> <a class="code" href="group__singlylinkedlist.html#gga47cf7d7c5e96492d21832f6444c1bf8aab1825a61375b4348d3cdb640902565da">DS_SLL_CONTINUE_EXECUTION</a>;</div><div class="line">    }</div><div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(maxElement == NULL) {</div><div class="line">        *(<span class="keywordtype">int</span>*)maxElement = *(<span class="keywordtype">int</span>*)element;</div><div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(*(<span class="keywordtype">int</span>*)element &gt; *(<span class="keywordtype">int</span>*)maxElement) {</div><div class="line">        *(<span class="keywordtype">int</span>*)maxElement = *(<span class="keywordtype">int</span>*)element;</div><div class="line">    }</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="group__singlylinkedlist.html#gga47cf7d7c5e96492d21832f6444c1bf8aab1825a61375b4348d3cdb640902565da">DS_SLL_CONTINUE_EXECUTION</a>;</div><div class="line">}</div></div><!-- fragment --> <div class="fragment"><div class="line"><span class="keywordtype">int</span> *max_element = (<span class="keywordtype">int</span>*)malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div><div class="line"><a class="code" href="group__singlylinkedlist.html#gaf8df2fa823e68fdbe474a80a309e4589">ds_sll_executeFunctionOnElements</a>(mylist, getMaxElement, (<span class="keywordtype">void</span>*)max_element);</div><div class="line">printf(<span class="stringliteral">&quot;Max Element in list: %d\n&quot;</span>, *max_element);</div><div class="line">free(max_element);</div></div><!-- fragment --><p>Another example is a function that returns a pointer to the node containing the max element: </p><div class="fragment"><div class="line"><a class="code" href="group__singlylinkedlist.html#ga47cf7d7c5e96492d21832f6444c1bf8a">ds_sll_func_return_t</a> maxNode(<span class="keywordtype">void</span>* element, <a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>* node, <span class="keywordtype">int</span> index, <span class="keywordtype">void</span>* maxNode) {</div><div class="line">    <span class="comment">// maxNode is a pointer to a pointer to a ds_sll_node_t</span></div><div class="line">    <a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a> **maximum_node_p = (<a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>**)maxNode;</div><div class="line">    <span class="keywordflow">if</span>(element == NULL) {</div><div class="line">        <span class="keywordflow">return</span> <a class="code" href="group__singlylinkedlist.html#gga47cf7d7c5e96492d21832f6444c1bf8aab1825a61375b4348d3cdb640902565da">DS_SLL_CONTINUE_EXECUTION</a>;</div><div class="line">    }</div><div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(*maximum_node_p == NULL) {</div><div class="line">        *maximum_node_p = node;</div><div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(*(<span class="keywordtype">int</span>*)element &gt; *(<span class="keywordtype">int</span>*)<a class="code" href="group__singlylinkedlist.html#gad2eb4f5595a27efe034d071fa0cc139a">ds_sll_extractElementFromNode</a>(*maximum_node_p)) {</div><div class="line">        *(<a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>**)maxNode = node;</div><div class="line">    }</div><div class="line">    <span class="keywordflow">return</span> <a class="code" href="group__singlylinkedlist.html#gga47cf7d7c5e96492d21832f6444c1bf8aab1825a61375b4348d3cdb640902565da">DS_SLL_CONTINUE_EXECUTION</a>;</div><div class="line">}</div></div><!-- fragment --> <div class="fragment"><div class="line"><a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>* max_node = NULL;</div><div class="line"><a class="code" href="group__singlylinkedlist.html#gaf8df2fa823e68fdbe474a80a309e4589">ds_sll_executeFunctionOnElements</a>(mylist, maxNode, (<span class="keywordtype">void</span>*)&amp;max_node);</div><div class="line"><span class="keywordtype">int</span>* max_node_element = (<span class="keywordtype">int</span>*)<a class="code" href="group__singlylinkedlist.html#gad2eb4f5595a27efe034d071fa0cc139a">ds_sll_extractElementFromNode</a>(max_node);</div><div class="line">printf(<span class="stringliteral">&quot;Max Element in Max Node is: %d\n&quot;</span>, *max_node_element);</div></div><!-- fragment --><p>A final example shows how you can define your own data structure to allow you to pass in multiple parameters to your function. This function will stop traversing the node when the element you were looking for is found by returning <code>DS_SLL_STOP_EXECUTION</code>: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>findNodeFuncParams {</div><div class="line">    <span class="keywordtype">int</span> input;</div><div class="line">    <span class="keywordtype">int</span> output_index;</div><div class="line">    <a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>* output_node;</div><div class="line">} findNodeFuncParams;</div></div><!-- fragment --> <div class="fragment"><div class="line"><a class="code" href="group__singlylinkedlist.html#ga47cf7d7c5e96492d21832f6444c1bf8a">ds_sll_func_return_t</a> findNode(<span class="keywordtype">void</span>* element, <a class="code" href="structds__sll__node__t.html">ds_sll_node_t</a>* node, <span class="keywordtype">int</span> index, <span class="keywordtype">void</span>* shared) {</div><div class="line">    findNodeFuncParams* params = (findNodeFuncParams*)shared;</div><div class="line"></div><div class="line">    <span class="keywordflow">if</span>(params-&gt;input == *(<span class="keywordtype">int</span>*)element) {</div><div class="line">        params-&gt;output_index = index;</div><div class="line">        params-&gt;output_node = node;</div><div class="line">        <span class="keywordflow">return</span> <a class="code" href="group__singlylinkedlist.html#gga47cf7d7c5e96492d21832f6444c1bf8aa697e94b879e0fd0d00249e7e408c167f">DS_SLL_STOP_EXECUTION</a>;</div><div class="line">    } <span class="keywordflow">else</span> {</div><div class="line">        <span class="keywordflow">return</span> <a class="code" href="group__singlylinkedlist.html#gga47cf7d7c5e96492d21832f6444c1bf8aab1825a61375b4348d3cdb640902565da">DS_SLL_CONTINUE_EXECUTION</a>;</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --> <div class="fragment"><div class="line">findNodeFuncParams* params = (findNodeFuncParams*) malloc(<span class="keyword">sizeof</span>(findNodeFuncParams));</div><div class="line">params-&gt;input = 77;</div><div class="line"><a class="code" href="group__singlylinkedlist.html#gaf8df2fa823e68fdbe474a80a309e4589">ds_sll_executeFunctionOnElements</a>(mylist, findNode, (<span class="keywordtype">void</span>*)params);</div><div class="line">printf(<span class="stringliteral">&quot;Node containing element (%d) is located at index %d\n&quot;</span>, params-&gt;input, params-&gt;output_index);</div><div class="line">free(params);</div></div><!-- fragment --><p><em>Please note that if you alter the element entry in the <code><a class="el" href="structds__sll__node__t.html">ds_sll_node_t</a></code> data structure to be anything other than a <code>void*</code> you might have to edit one or more other functions, mainly you will need to alter the <code>ds_sll_executeFunctionOnElements(...)</code> function as it passes a <code>void*</code> as an argument to the given executable function. This does not mean that you can not have a complex data type for the <b>element</b> of your node, this library was designed so that no matter what the data type is of your element the node only stores a generic void pointer to refer to it, and the library functions depend on the usage of <code>ds_sll_extractElementFromNode</code>, <code>ds_sll_storeElementInNode</code>, <code>ds_sll_deleteElement</code>, <code>ds_sll_copyElement</code>, and other abstractions to appropriately access and manipulate the element objects.</em></p>
+<p><em>So as a general guideline, to easily customize the library, stick to modifying the library functions, mainly those mentioned below in the <b>Abstractions</b> section.</em></p>
+<h4>Abstractions:</h4>
+<p>This library was designed with some abstractions in mind to allow for easy customization according to your project's needs. These abstractions are mainly implemented as inline functions where possible. The main abstractions are:</p><ul>
+<li><b>ds_sll_createNode</b>: allows you to specify how nodes are created</li>
+<li><b>ds_sll_extractElementFromNode</b>: allows you to specify how node elements are read (return node-&gt;element)</li>
+<li><b>ds_sll_storeElementInNode</b>: allows you to specify how to insert an element in a node (node-&gt;element = new_element)</li>
+<li><b>ds_sll_deleteElement</b>: allows you to specify how to deallocate the resources of a given Element</li>
+<li><b>ds_sll_deleteNode</b>: allows you to specify how a node is 'deleted' and its resources are de-allocated</li>
+<li><b>ds_sll_copyElement</b>: allows you to specify how an Element is copied</li>
+</ul>
+<p>You can alter these functions and define your own custom functions using <code>ds_sll_executeFunctionOnElements</code> to suite the needs of your application and you can easily change the way data is being stored in the node. Maybe the void pointers being stored in the nodes are references to more complicated objects, and therefore you can modify these functions to perform initializations and data manipulations according to your design without affecting the overall linked list functionality. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

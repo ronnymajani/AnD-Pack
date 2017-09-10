@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Data Structures/Linked Lists/SinglyLinkedList.h"
+#include "src/SinglyLinkedList.h"
 
 /* Example Executable Functions */
 ds_sll_func_return_t printElement(void* element, ds_sll_node_t* node, int index, void* extra) {
