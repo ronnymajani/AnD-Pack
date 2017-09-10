@@ -8,6 +8,11 @@ that allow easy modification of the to adapt the library's functionality
 > and Data Structures (AnD Pack) that I was working on, until I decided to split
 > it off into a separate repository*
 
+Documentation:
+--------------
+To generate the Documentation, just run the `doxygen` command in the
+root directory of this porject
+
 Implementation:
 ---------------
 - C Language following the C-11 Standard
