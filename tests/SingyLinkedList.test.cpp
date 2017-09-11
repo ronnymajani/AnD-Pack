@@ -24,6 +24,7 @@ SOFTWARE.
 
 /**
  * @ingroup testfiles
+ * @{
  * @file Singly Linked List Unit Tests
  * @brief Unit Tests for the Singly Linked List library
  */
@@ -95,5 +96,7 @@ TEST_CASE("Store, Copy, and Delete Elements from Node", "[store_delete_elements]
 
 } /* extern "C" */
 
-
+/**
+ * @}
+ */
 
