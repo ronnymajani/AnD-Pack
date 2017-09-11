@@ -129,6 +129,7 @@ ds_sll_node_t* ds_sll_createNode(void* element)
     }
 
     ds_sll_storeElementInNode(new_node, element);
+    new_node->next = NULL;
     return new_node;
 }
 
@@ -173,25 +174,29 @@ inline ds_sll_node_t* ds_sll_nextNode(ds_sll_node_t* node)
 
 
 /**
- * @brief Delete an element contained within a node and free any allocated resources
- * @param element The element
+ * @brief Delete an element contained within a node, free any allocated resources, and set the Element pointer to NULL
+ * @param element Pointer to the element to delete
  */
- inline void ds_sll_deleteElement(void* element)
+ inline void ds_sll_deleteElement(void** element)
 {
-    if(element != NULL) {
-        free(element);
+    if(*element != NULL) {
+        free(*element);
+        *element = NULL;
     }
 }
 
 
 /**
- * @brief Delete the given node; Free all allocated resources
- * @param node The node to delete
+ * @brief Delete the given node, free all allocated resources, and set the Node pointer to NULL
+ * @param node Pointer to the node to delete
  */
- inline void ds_sll_deleteNode(ds_sll_node_t* node)
+ inline void ds_sll_deleteNode(ds_sll_node_t** node)
 {
-    ds_sll_deleteElement(node->element);
-    free(node);
+    if(*node != NULL) {
+        ds_sll_deleteElement(&((*node)->element));
+        free(*node);
+        *node = NULL;
+    }
 }
 
 
@@ -323,13 +328,12 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
     // If deleting the list's head
     if(index == 0) {
         if(linkedList->head == linkedList->tail) {
-            ds_sll_deleteNode(linkedList->head);
-            linkedList->head = NULL;
+            ds_sll_deleteNode(&(linkedList->head));
             linkedList->tail = NULL;
         }
         else {
             linkedList->head = ds_sll_nextNode(todel);
-            ds_sll_deleteNode(todel);
+            ds_sll_deleteNode(&todel);
         }
         return DS_SLL_NO_ERROR;
     }
@@ -351,14 +355,14 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
         linkedList->tail = todel; // move the tail pointer one node back (todel)
         todel = ds_sll_nextNode(todel); // move the todel pointer one node forward (the old tail)
         linkedList->tail->next = NULL; // unlink the old tail from the linked list chain
-        ds_sll_deleteNode(todel); // delete the old tail
+        ds_sll_deleteNode(&todel); // delete the old tail
         return DS_SLL_NO_ERROR;
     }
     else {
         ds_sll_node_t *prev = todel; // save a pointer to the current node (the node before the node to be deleted)
         todel = ds_sll_nextNode(todel); // set todel to point to the node to be deleted
         prev->next = ds_sll_nextNode(todel); // unlink the todel node and make prev point to the next node in the list
-        ds_sll_deleteNode(todel); // delete the todel node
+        ds_sll_deleteNode(&todel); // delete the todel node
         return DS_SLL_NO_ERROR;
     }
 }
@@ -366,31 +370,42 @@ void* ds_sll_getElementAtIndex(const ds_sll_t* linkedList, int index)
 
 /**
  * @brief Destroy a Singly Linked List
- * @param linkedList The singly linked list to destroy
+ * @param linkedList A pointer to the singly linked list to destroy
  * @return @ref ds_sll_error_t Error code representing the status of the function
- * This function will delete all the nodes and deallocate all related memory.
+ * This function will delete all the nodes, deallocate all related memory, and set the given pointer to NULL.
  * Warning, do not use this function if you are sharing any nodes with another list
  * that is currently in use
  */
-ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t *linkedList)
+ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t **linkedList_toDelete)
 {
+    ds_sll_t *linkedList = *linkedList_toDelete;
+
+    if(linkedList == NULL) {
+        return DS_SLL_NO_ERROR;
+    }
+
+    if(linkedList->head == NULL && linkedList->tail == NULL) {
+        *linkedList_toDelete = NULL;
+        return DS_SLL_NO_ERROR;
+    }
+
     ASSERT((linkedList != NULL) && (linkedList->head != NULL) && (linkedList->tail != NULL));
 
     while((linkedList->head != NULL) && (linkedList->head != linkedList->tail))
     {
         ds_sll_node_t *todel = linkedList->head;
         linkedList->head = ds_sll_nextNode(todel);
-        ds_sll_deleteNode(todel);
+        ds_sll_deleteNode(&todel);
     }
 
     // free the list's tail
-    ds_sll_deleteElement(linkedList->tail->element);
-    linkedList->tail->element = NULL;
+    ds_sll_deleteElement(&(linkedList->tail->element));
 
     // check if an error occurred and act accordingly
     if(linkedList-> head == linkedList->tail) {
         linkedList->head = NULL;
         linkedList->tail = NULL;
+        *linkedList_toDelete = NULL;
         return DS_SLL_NO_ERROR;
     } else {
         return DS_SLL_BROKEN_LIST_ERROR;

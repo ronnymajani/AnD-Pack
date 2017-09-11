@@ -150,11 +150,8 @@ int main() {
     ds_sll_executeFunctionOnElements(newlist, printElement, NULL);
     printf("---------------\n");
 
-    ds_sll_destroySinglyLinkedList(mylist);
-    ds_sll_destroySinglyLinkedList(newlist);
-
-    free(mylist);
-    free(newlist);
+    ds_sll_destroySinglyLinkedList(&mylist);
+    ds_sll_destroySinglyLinkedList(&newlist);
 
     printf("Hello, World!\n");
     return 0;
