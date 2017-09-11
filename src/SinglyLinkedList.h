@@ -1,4 +1,3 @@
-/* AnD: Algorithms and Data Structures Pack */
 /*
 The MIT License (MIT)
 
@@ -98,14 +97,14 @@ typedef enum ds_sll_func_return_t {
 // Create/Delete
 ds_sll_t* ds_sll_newSinglyLinkedList();
 ds_sll_node_t* ds_sll_createNode(void* element);
-ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t *linkedList);
-void ds_sll_deleteNode(ds_sll_node_t* node);
+ds_sll_error_t ds_sll_destroySinglyLinkedList(ds_sll_t **linkedList_toDelete);
+void ds_sll_deleteNode(ds_sll_node_t** node);
 ds_sll_error_t ds_sll_deleteNodeAtIndex(ds_sll_t* linkedList, int index);
 // Operations on Node
 ds_sll_node_t* ds_sll_nextNode(ds_sll_node_t* node);
 void* ds_sll_extractElementFromNode(ds_sll_node_t* node);
 void ds_sll_storeElementInNode(ds_sll_node_t* node, void* element);
-void ds_sll_deleteElement(void* node);
+void ds_sll_deleteElement(void** element);
 void* ds_sll_copyElement(void* element, const size_t element_size);
 // Operations on List
 int ds_sll_executeFunctionOnElements(ds_sll_t* linkedList, ds_sll_func_return_t (*func)(void*, ds_sll_node_t*, int, void*), void *sharedData);
